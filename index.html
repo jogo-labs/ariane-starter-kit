@@ -9,46 +9,134 @@
     <style>
         :root {
             --ks-bg: #f8fafc;
+            --ks-bg-subtle: #eef2f7;
             --ks-nav-bg: #0f172a;
             --ks-nav-fg: #f1f5f9;
             --ks-border: #e2e8f0;
             --ks-text: #1e293b;
             --ks-muted: #64748b;
         }
+        :root[data-theme='dark'] {
+            --ks-bg: #0f172a;
+            --ks-bg-subtle: #1e293b;
+            --ks-nav-bg: #020617;
+            --ks-nav-fg: #f1f5f9;
+            --ks-border: #334155;
+            --ks-text: #e2e8f0;
+            --ks-muted: #94a3b8;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme='light']) {
+                --ks-bg: #0f172a;
+                --ks-bg-subtle: #1e293b;
+                --ks-nav-bg: #020617;
+                --ks-nav-fg: #f1f5f9;
+                --ks-border: #334155;
+                --ks-text: #e2e8f0;
+                --ks-muted: #94a3b8;
+            }
+        }
         * { box-sizing: border-box; }
         body { margin: 0; font-family: system-ui, sans-serif; background: var(--ks-bg); color: var(--ks-text); }
         header.ks-nav {
             position: sticky;
             top: 0;
+            z-index: 10;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 1rem;
             padding: 0.75rem 1.5rem;
             background: var(--ks-nav-bg);
             color: var(--ks-nav-fg);
         }
-        header.ks-nav a { color: inherit; text-decoration: none; font-weight: 600; }
-        main.ks-content { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+        header.ks-nav a { color: inherit; text-decoration: none; }
+        .ks-nav-left { display: flex; align-items: baseline; gap: 0.5rem; font-weight: 600; }
+        .ks-nav-left .ks-logo { font-size: 1.05rem; }
+        .ks-nav-left .ks-nav-title { font-weight: 400; opacity: 0.75; font-size: 0.9rem; }
+        .ks-nav-right { display: flex; align-items: center; gap: 1rem; font-size: 0.875rem; }
+        .ks-nav-right a { opacity: 0.85; }
+        .ks-nav-right a:hover { opacity: 1; text-decoration: underline; }
+        .ks-theme-toggle {
+            font: inherit;
+            font-size: 0.875rem;
+            background: transparent;
+            color: inherit;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            padding: 0.25rem 0.6rem;
+            cursor: pointer;
+        }
+        .ks-theme-toggle:hover { background: rgba(255, 255, 255, 0.1); }
+        .ks-layout { display: flex; align-items: flex-start; }
+        nav.ks-toc {
+            position: sticky;
+            top: 49px;
+            flex: none;
+            width: 220px;
+            max-height: calc(100vh - 49px);
+            overflow-y: auto;
+            padding: 1.5rem 1rem;
+            border-right: 1px solid var(--ks-border);
+        }
+        nav.ks-toc a {
+            display: block;
+            padding: 0.25rem 0.5rem;
+            margin-block-end: 0.125rem;
+            border-radius: 4px;
+            color: var(--ks-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        nav.ks-toc a:hover { background: var(--ks-bg-subtle); color: var(--ks-text); }
+        main.ks-content { flex: 1; min-width: 0; max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
         section.ks-component { border-top: 1px solid var(--ks-border); padding-block: 2rem; }
-        section.ks-component:first-child { border-top: none; }
+        section.ks-component:first-child { border-top: none; padding-block-start: 0; }
         section.ks-component h2 { margin: 0 0 0.25rem; font-size: 1.25rem; }
         p.ks-summary { color: var(--ks-muted); margin: 0 0 1.5rem; }
         div.ks-variant { margin-block-end: 1.5rem; }
         div.ks-variant h3 { font-size: 0.95rem; margin: 0 0 0.25rem; }
         p.ks-variant-desc { color: var(--ks-muted); font-size: 0.875rem; margin: 0 0 0.75rem; }
         p.ks-todo { color: #b45309; font-style: italic; }
+        @media (max-width: 700px) {
+            nav.ks-toc { display: none; }
+        }
     </style>
 </head>
 <body>
     <header class="ks-nav">
-        <span>Ariane — Kitchen Sink</span>
-        <a href="https://github.com/jogo-labs/ariane" target="_blank" rel="noopener">Voir le repo ariane ↗</a>
+        <div class="ks-nav-left">
+            <span class="ks-logo">Ariane</span>
+            <span class="ks-nav-title">Kitchen Sink</span>
+        </div>
+        <div class="ks-nav-right">
+            <button type="button" class="ks-theme-toggle" id="ks-theme-toggle" aria-label="Changer de thème"></button>
+            <a href="https://github.com/jogo-labs/ariane" target="_blank" rel="noopener">ariane ↗</a>
+            <a href="https://github.com/jogo-labs/ariane-starter-kit" target="_blank" rel="noopener">starter-kit ↗</a>
+        </div>
     </header>
-    <main class="ks-content">
-    <section class="ks-component" id="ar-alert">
-        <h2>ar-alert</h2>
-        <p class="ks-summary">Affiche un message important intégré au contenu environnant. À utiliser pour des confirmations, avertissements, erreurs, ou toute information que l'utilisateur ne doit pas manquer.</p>
-        
+    <div class="ks-layout">
+        <nav class="ks-toc" aria-label="Sommaire des composants">
+            <a href="#ar-alert">ar-alert</a>
+            <a href="#ar-breadcrumb">ar-breadcrumb</a>
+            <a href="#ar-charcounter">ar-charcounter</a>
+            <a href="#ar-collapse">ar-collapse</a>
+            <a href="#ar-datepicker">ar-datepicker</a>
+            <a href="#ar-dialog">ar-dialog</a>
+            <a href="#ar-dropdown">ar-dropdown</a>
+            <a href="#ar-pagination">ar-pagination</a>
+            <a href="#ar-progressbar">ar-progressbar</a>
+            <a href="#ar-stepper">ar-stepper</a>
+            <a href="#ar-spinner">ar-spinner</a>
+            <a href="#ar-tab-group">ar-tab-group</a>
+            <a href="#ar-table-sort">ar-table-sort</a>
+            <a href="#ar-tooltip">ar-tooltip</a>
+        </nav>
+        <main class="ks-content">
+        <section class="ks-component" id="ar-alert">
+            <h2>ar-alert</h2>
+            <p class="ks-summary">Affiche un message important intégré au contenu environnant. À utiliser pour des confirmations, avertissements, erreurs, ou toute information que l'utilisateur ne doit pas manquer.</p>
+            
         <div class="ks-variant">
             <h3>Défaut</h3>
             <p class="ks-variant-desc">Alerte sans variant explicite (erreur par défaut), avec titre et corps.</p>
@@ -81,12 +169,12 @@
 </div>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-breadcrumb">
-        <h2>ar-breadcrumb</h2>
-        <p class="ks-summary">Affiche un fil de liens qui montre à l'utilisateur sa position dans la hiérarchie du site, avec un affichage adapté au mobile et au desktop.</p>
-        
+        <section class="ks-component" id="ar-breadcrumb">
+            <h2>ar-breadcrumb</h2>
+            <p class="ks-summary">Affiche un fil de liens qui montre à l'utilisateur sa position dans la hiérarchie du site, avec un affichage adapté au mobile et au desktop.</p>
+            
         <div class="ks-variant">
             <h3>Par défaut</h3>
             <p class="ks-variant-desc">Fil d'ariane avec 3 niveaux, le dernier élément actif.</p>
@@ -122,12 +210,12 @@
 </ar-breadcrumb>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-charcounter">
-        <h2>ar-charcounter</h2>
-        <p class="ks-summary">Affiche le nombre de caractères restants pour un champ de texte, et prévient avant d'atteindre la limite.</p>
-        
+        <section class="ks-component" id="ar-charcounter">
+            <h2>ar-charcounter</h2>
+            <p class="ks-summary">Affiche le nombre de caractères restants pour un champ de texte, et prévient avant d'atteindre la limite.</p>
+            
         <div class="ks-variant">
             <h3>Par défaut</h3>
             <p class="ks-variant-desc">Compteur lié à un champ texte via `for`. Affiche le nombre de caractères restants.
@@ -186,12 +274,12 @@ Sans pipe, le label est utilisé tel quel (compatibilité descendante).
 </div>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-collapse">
-        <h2>ar-collapse</h2>
-        <p class="ks-summary">Affiche un résumé et se déplie pour révéler du contenu additionnel. À utiliser pour divulguer progressivement de l'information, grouper des FAQ, ou masquer des options avancées — combinez plusieurs instances pour un comportement accordéon.</p>
-        
+        <section class="ks-component" id="ar-collapse">
+            <h2>ar-collapse</h2>
+            <p class="ks-summary">Affiche un résumé et se déplie pour révéler du contenu additionnel. À utiliser pour divulguer progressivement de l'information, grouper des FAQ, ou masquer des options avancées — combinez plusieurs instances pour un comportement accordéon.</p>
+            
         <div class="ks-variant">
             <h3>Standalone</h3>
             <p class="ks-variant-desc">Collapse simple avec un trigger interne via `slot="trigger"`.
@@ -285,14 +373,14 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
 </ar-collapse>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-datepicker">
-        <h2>ar-datepicker</h2>
-        <p class="ks-summary">Affiche un champ de saisie de date synchronisé avec un calendrier popover, pour combiner saisie libre au clavier et sélection visuelle.</p>
-        
+        <section class="ks-component" id="ar-datepicker">
+            <h2>ar-datepicker</h2>
+            <p class="ks-summary">Affiche un champ de saisie de date synchronisé avec un calendrier popover, pour combiner saisie libre au clavier et sélection visuelle.</p>
+            
         <div class="ks-variant">
-            <h3>undefined</h3>
+            <h3>Par défaut</h3>
             <p class="ks-variant-desc">Date unique avec format français. Le hint par défaut (non surchargé ici) affiche automatiquement un exemple de date formatée.
 </p>
             <ar-datepicker
@@ -304,7 +392,7 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
         </div>
 
         <div class="ks-variant">
-            <h3>undefined</h3>
+            <h3>Avec erreur</h3>
             <p class="ks-variant-desc">État d'erreur visible via le slot error.</p>
             <ar-datepicker label="Date de naissance">
   <span slot="error">Date invalide ou hors plage autorisée</span>
@@ -313,21 +401,21 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
         </div>
 
         <div class="ks-variant">
-            <h3>undefined</h3>
+            <h3>Readonly</h3>
             <p class="ks-variant-desc">Valeur affichée non modifiable, soumise au formulaire.</p>
             <ar-datepicker value="2026-06-12" readonly label="Date"></ar-datepicker>
 
         </div>
 
         <div class="ks-variant">
-            <h3>undefined</h3>
+            <h3>Disabled</h3>
             <p class="ks-variant-desc">Composant désactivé, valeur exclue du formulaire.</p>
             <ar-datepicker value="2026-06-12" disabled label="Date"></ar-datepicker>
 
         </div>
 
         <div class="ks-variant">
-            <h3>undefined</h3>
+            <h3>Plage de dates</h3>
             <p class="ks-variant-desc">`min` et `max` restreignent les jours sélectionnables (grisés, `aria-disabled`). Le hint par défaut annonce la plage aux technologies d'assistance sans configuration supplémentaire.
 </p>
             <ar-datepicker
@@ -340,7 +428,7 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
         </div>
 
         <div class="ks-variant">
-            <h3>undefined</h3>
+            <h3>Langue et format</h3>
             <p class="ks-variant-desc">L'attribut `lang` pilote la totalité des textes et formats — y compris les textes par défaut des slots — à l'exception du label de l'input.
 </p>
             <ar-datepicker
@@ -350,12 +438,12 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
 ></ar-datepicker>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-dialog">
-        <h2>ar-dialog</h2>
-        <p class="ks-summary">Apparaît au-dessus de la page (modal) ou glisse depuis le bord de l'écran (drawer) pour capter l'attention de l'utilisateur. À utiliser pour des confirmations, formulaires, menus de navigation, ou toute tâche focalisée qui interrompt le flux principal.</p>
-        
+        <section class="ks-component" id="ar-dialog">
+            <h2>ar-dialog</h2>
+            <p class="ks-summary">Apparaît au-dessus de la page (modal) ou glisse depuis le bord de l'écran (drawer) pour capter l'attention de l'utilisateur. À utiliser pour des confirmations, formulaires, menus de navigation, ou toute tâche focalisée qui interrompt le flux principal.</p>
+            
         <div class="ks-variant">
             <h3>Modal</h3>
             <p class="ks-variant-desc">Dialog centré avec backdrop. Cliquer sur le bouton pour l'ouvrir.</p>
@@ -518,12 +606,12 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
 </script>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-dropdown">
-        <h2>ar-dropdown</h2>
-        <p class="ks-summary">Affiche un panneau contextuel déclenché par un bouton, positionné automatiquement autour de lui. À utiliser pour des menus d'actions, des filtres, ou tout contenu additionnel qui ne justifie pas un dialog.</p>
-        
+        <section class="ks-component" id="ar-dropdown">
+            <h2>ar-dropdown</h2>
+            <p class="ks-summary">Affiche un panneau contextuel déclenché par un bouton, positionné automatiquement autour de lui. À utiliser pour des menus d'actions, des filtres, ou tout contenu additionnel qui ne justifie pas un dialog.</p>
+            
         <div class="ks-variant">
             <h3>Mode menu</h3>
             <p class="ks-variant-desc">Avec des ar-dropdown-item, le panel reçoit automatiquement role="menu" et la navigation clavier est activée (↑↓ Home End Escape Tab).</p>
@@ -628,12 +716,12 @@ exigences de contraste : `opacity: .5` est donc conforme.
 </p>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-pagination">
-        <h2>ar-pagination</h2>
-        <p class="ks-summary">Découpe une longue liste de contenu en pages, et permet à l'utilisateur de naviguer entre elles.</p>
-        
+        <section class="ks-component" id="ar-pagination">
+            <h2>ar-pagination</h2>
+            <p class="ks-summary">Découpe une longue liste de contenu en pages, et permet à l'utilisateur de naviguer entre elles.</p>
+            
         <div class="ks-variant">
             <h3>Par défaut</h3>
             <p class="ks-variant-desc">Pagination sans attributs (valeurs par défaut du composant).</p>
@@ -668,12 +756,12 @@ exigences de contraste : `opacity: .5` est donc conforme.
             <ar-pagination compact current="4" total="12"></ar-pagination>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-progressbar">
-        <h2>ar-progressbar</h2>
-        <p class="ks-summary">Affiche l'avancement d'une opération en cours sous forme de barre horizontale. À utiliser pour un upload de fichier, un parcours en plusieurs étapes, ou toute tâche à progression mesurable.</p>
-        
+        <section class="ks-component" id="ar-progressbar">
+            <h2>ar-progressbar</h2>
+            <p class="ks-summary">Affiche l'avancement d'une opération en cours sous forme de barre horizontale. À utiliser pour un upload de fichier, un parcours en plusieurs étapes, ou toute tâche à progression mesurable.</p>
+            
         <div class="ks-variant">
             <h3>Par défaut</h3>
             <p class="ks-variant-desc">Barre de progression sans attribut — affiche l'état 0 % sans label.</p>
@@ -693,55 +781,12 @@ exigences de contraste : `opacity: .5` est donc conforme.
 </ar-progressbar>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-spinner">
-        <h2>ar-spinner</h2>
-        <p class="ks-summary">Indique qu'une opération est en cours quand sa durée est inconnue. À utiliser pour un état de chargement là où une barre de progression déterminée n'est pas pertinente.</p>
-        
-        <div class="ks-variant">
-            <h3>Par défaut (moyen)</h3>
-            <p class="ks-variant-desc">Spinner sans attribut size (taille md par défaut).</p>
-            <ar-spinner></ar-spinner>
-
-        </div>
-
-        <div class="ks-variant">
-            <h3>Très petit</h3>
-            <p class="ks-variant-desc">Spinner avec size="xs".</p>
-            <ar-spinner size="xs"></ar-spinner>
-
-        </div>
-
-        <div class="ks-variant">
-            <h3>Petit</h3>
-            <p class="ks-variant-desc">Spinner avec size="sm".</p>
-            <ar-spinner size="sm"></ar-spinner>
-
-        </div>
-
-        <div class="ks-variant">
-            <h3>Grand</h3>
-            <p class="ks-variant-desc">Spinner avec size="lg".</p>
-            <ar-spinner size="lg"></ar-spinner>
-
-        </div>
-
-        <div class="ks-variant">
-            <h3>Toutes les tailles</h3>
-            <p class="ks-variant-desc">Les 4 tailles disponibles affichées côte à côte (xs, sm, md, lg).</p>
-            <ar-spinner size="xs"></ar-spinner>
-<ar-spinner size="sm"></ar-spinner>
-<ar-spinner></ar-spinner>
-<ar-spinner size="lg"></ar-spinner>
-
-        </div>
-    </section>
-
-    <section class="ks-component" id="ar-stepper">
-        <h2>ar-stepper</h2>
-        <p class="ks-summary">Affiche la progression de l'utilisateur à travers une séquence d'étapes, avec prise en charge des sous-étapes. À utiliser pour des parcours de création ou de modification en plusieurs étapes.</p>
-        
+        <section class="ks-component" id="ar-stepper">
+            <h2>ar-stepper</h2>
+            <p class="ks-summary">Affiche la progression de l'utilisateur à travers une séquence d'étapes, avec prise en charge des sous-étapes. À utiliser pour des parcours de création ou de modification en plusieurs étapes.</p>
+            
         <div class="ks-variant">
             <h3>Par défaut</h3>
             <p class="ks-variant-desc">Stepper à 3 étapes avec sous-étapes, sous-étape « Mes coordonnées » active.</p>
@@ -841,12 +886,55 @@ exigences de contraste : `opacity: .5` est donc conforme.
 </ar-stepper>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-tab-group">
-        <h2>ar-tab-group</h2>
-        <p class="ks-summary">Organise du contenu associé dans un même conteneur qui affiche un panneau à la fois, avec des onglets pour naviguer entre eux.</p>
-        
+        <section class="ks-component" id="ar-spinner">
+            <h2>ar-spinner</h2>
+            <p class="ks-summary">Indique qu'une opération est en cours quand sa durée est inconnue. À utiliser pour un état de chargement là où une barre de progression déterminée n'est pas pertinente.</p>
+            
+        <div class="ks-variant">
+            <h3>Par défaut (moyen)</h3>
+            <p class="ks-variant-desc">Spinner sans attribut size (taille md par défaut).</p>
+            <ar-spinner></ar-spinner>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Très petit</h3>
+            <p class="ks-variant-desc">Spinner avec size="xs".</p>
+            <ar-spinner size="xs"></ar-spinner>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Petit</h3>
+            <p class="ks-variant-desc">Spinner avec size="sm".</p>
+            <ar-spinner size="sm"></ar-spinner>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Grand</h3>
+            <p class="ks-variant-desc">Spinner avec size="lg".</p>
+            <ar-spinner size="lg"></ar-spinner>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Toutes les tailles</h3>
+            <p class="ks-variant-desc">Les 4 tailles disponibles affichées côte à côte (xs, sm, md, lg).</p>
+            <ar-spinner size="xs"></ar-spinner>
+<ar-spinner size="sm"></ar-spinner>
+<ar-spinner></ar-spinner>
+<ar-spinner size="lg"></ar-spinner>
+
+        </div>
+        </section>
+
+        <section class="ks-component" id="ar-tab-group">
+            <h2>ar-tab-group</h2>
+            <p class="ks-summary">Organise du contenu associé dans un même conteneur qui affiche un panneau à la fois, avec des onglets pour naviguer entre eux.</p>
+            
         <div class="ks-variant">
             <h3>Par défaut</h3>
             <p class="ks-variant-desc">Déclarer les onglets avec `&lt;ar-tab panel="nom"&gt;` et les panneaux avec `&lt;ar-tab-panel name="nom"&gt;`. L'association se fait par correspondance du nom.</p>
@@ -1053,12 +1141,12 @@ exigences de contraste : `opacity: .5` est donc conforme.
 </div>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-table-sort">
-        <h2>ar-table-sort</h2>
-        <p class="ks-summary">Affiche un indicateur de tri sur un entête de colonne, avec confirmation asynchrone du résultat. À utiliser pour trier une liste de données côté serveur ou après un traitement asynchrone.</p>
-        
+        <section class="ks-component" id="ar-table-sort">
+            <h2>ar-table-sort</h2>
+            <p class="ks-summary">Affiche un indicateur de tri sur un entête de colonne, avec confirmation asynchrone du résultat. À utiliser pour trier une liste de données côté serveur ou après un traitement asynchrone.</p>
+            
         <div class="ks-variant">
             <h3>Alphabétique</h3>
             <p class="ks-variant-desc">Tri alphabétique (A → Z / Z → A). Cliquer sur l'entête émet `ar-table-sort-change`.
@@ -1190,18 +1278,18 @@ sans avancer dans le cycle.
 </script>
 
         </div>
-    </section>
+        </section>
 
-    <section class="ks-component" id="ar-tooltip">
-        <h2>ar-tooltip</h2>
-        <p class="ks-summary">Affiche une information contextuelle brève, non interactive, quand l'utilisateur survole ou focus un élément cible.
+        <section class="ks-component" id="ar-tooltip">
+            <h2>ar-tooltip</h2>
+            <p class="ks-summary">Affiche une information contextuelle brève, non interactive, quand l'utilisateur survole ou focus un élément cible.
 
 Implémente WCAG 1.4.13 (Content on Hover or Focus) : la bulle reste
 accessible quand le pointeur se déplace du trigger vers la bulle.
 
 Le contenu doit rester non-interactif (spec ARIA role="tooltip").
 Pour du contenu riche ou cliquable, utiliser ar-dropdown.</p>
-        
+            
         <div class="ks-variant">
             <h3>Par défaut</h3>
             <p class="ks-variant-desc">Passez l'ID du trigger via `for`. La bulle s'affiche après `show-delay` ms (300 par défaut) et se masque après `hide-delay` ms (150 par défaut).</p>
@@ -1275,7 +1363,43 @@ Ici `show-delay="0"` pour une réponse immédiate.
 <ar-tooltip for="tt-disabled" disabled>Ce texte ne s'affichera pas</ar-tooltip>
 
         </div>
-    </section>
-    </main>
+        </section>
+        </main>
+    </div>
+    <script>
+        (function () {
+            var KEY = 'ks-theme';
+            var STATES = ['auto', 'light', 'dark'];
+            var LABELS = { auto: '🌓 Auto', light: '☀️ Clair', dark: '🌙 Sombre' };
+            var root = document.documentElement;
+            var btn = document.getElementById('ks-theme-toggle');
+
+            function apply(state) {
+                if (state === 'auto') root.removeAttribute('data-theme');
+                else root.setAttribute('data-theme', state);
+                btn.textContent = LABELS[state];
+                btn.setAttribute('aria-label', 'Thème actuel : ' + LABELS[state] + ' — cliquer pour changer');
+            }
+
+            var stored = null;
+            try {
+                stored = localStorage.getItem(KEY);
+            } catch (e) {
+                /* stockage indisponible (navigation privée, etc.) — reste sur "auto" */
+            }
+            var current = STATES.includes(stored) ? stored : 'auto';
+            apply(current);
+
+            btn.addEventListener('click', function () {
+                current = STATES[(STATES.indexOf(current) + 1) % STATES.length];
+                try {
+                    localStorage.setItem(KEY, current);
+                } catch (e) {
+                    /* stockage indisponible — le choix ne survit pas au rechargement */
+                }
+                apply(current);
+            });
+        })();
+    </script>
 </body>
 </html>
