@@ -1,0 +1,1311 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kitchen Sink — Ariane Starter Kit</title>
+    <script type="module" src="https://unpkg.com/@ariane-ui/core/cdn/autoloader.prod.js"></script>
+    <link rel="stylesheet" href="./ariane-starter.css" />
+    <style>
+        :root {
+            --ks-bg: #f8fafc;
+            --ks-nav-bg: #0f172a;
+            --ks-nav-fg: #f1f5f9;
+            --ks-border: #e2e8f0;
+            --ks-text: #1e293b;
+            --ks-muted: #64748b;
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: system-ui, sans-serif; background: var(--ks-bg); color: var(--ks-text); }
+        header.ks-nav {
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.5rem;
+            background: var(--ks-nav-bg);
+            color: var(--ks-nav-fg);
+        }
+        header.ks-nav a { color: inherit; text-decoration: none; font-weight: 600; }
+        main.ks-content { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+        section.ks-component { border-top: 1px solid var(--ks-border); padding-block: 2rem; }
+        section.ks-component:first-child { border-top: none; }
+        section.ks-component h2 { margin: 0 0 0.25rem; font-size: 1.25rem; }
+        p.ks-summary { color: var(--ks-muted); margin: 0 0 1.5rem; }
+        div.ks-variant { margin-block-end: 1.5rem; }
+        div.ks-variant h3 { font-size: 0.95rem; margin: 0 0 0.25rem; }
+        p.ks-variant-desc { color: var(--ks-muted); font-size: 0.875rem; margin: 0 0 0.75rem; }
+        p.ks-todo { color: #b45309; font-style: italic; }
+    </style>
+</head>
+<body>
+    <header class="ks-nav">
+        <span>Ariane — Kitchen Sink</span>
+        <a href="https://github.com/jogo-labs/ariane" target="_blank" rel="noopener">Voir le repo ariane ↗</a>
+    </header>
+    <main class="ks-content">
+    <section class="ks-component" id="ar-alert">
+        <h2>ar-alert</h2>
+        <p class="ks-summary">Affiche un message important intégré au contenu environnant. À utiliser pour des confirmations, avertissements, erreurs, ou toute information que l'utilisateur ne doit pas manquer.</p>
+        
+        <div class="ks-variant">
+            <h3>Défaut</h3>
+            <p class="ks-variant-desc">Alerte sans variant explicite (erreur par défaut), avec titre et corps.</p>
+            <ar-alert>
+    <strong>Titre de l'alerte</strong><br>
+    Je suis une alerte par defaut (erreur).
+</ar-alert>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Succès</h3>
+            <p class="ks-variant-desc">Rendu en mode succès.</p>
+            <ar-alert variant="success">
+    <strong>Succès de l'opération</strong><br>
+    Je suis une alerte de succès.
+</ar-alert>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Dismissible</h3>
+            <p class="ks-variant-desc">Rendu d'une alerte qui peut être fermée. L'ID fourni doit être un élément existant dans la page qui recevra le focus à la fermeture du composant.</p>
+            <div>
+    <button style="margin-bottom: 10px" type="button" id="idBoutonFocused">Test focus</button>
+    <ar-alert next-focus="idBoutonFocused">
+        <strong>Alerte supprimable</strong><br>
+        Je suis une alerte qui peut être fermée.
+    </ar-alert>
+</div>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-breadcrumb">
+        <h2>ar-breadcrumb</h2>
+        <p class="ks-summary">Affiche un fil de liens qui montre à l'utilisateur sa position dans la hiérarchie du site, avec un affichage adapté au mobile et au desktop.</p>
+        
+        <div class="ks-variant">
+            <h3>Par défaut</h3>
+            <p class="ks-variant-desc">Fil d'ariane avec 3 niveaux, le dernier élément actif.</p>
+            <ar-breadcrumb>
+  <ar-breadcrumb-item label="Accueil" href="/accueil"></ar-breadcrumb-item>
+  <ar-breadcrumb-item label="Item 1" href="/item-1"></ar-breadcrumb-item>
+  <ar-breadcrumb-item label="Item 2" href="/item-2"></ar-breadcrumb-item>
+  <ar-breadcrumb-item label="Item actuel"></ar-breadcrumb-item>
+</ar-breadcrumb>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Séparateur personnalisé</h3>
+            <p class="ks-variant-desc">Un contenu posé dans le slot separator remplace le « / » par défaut ; il est cloné entre chaque item.</p>
+            <ar-breadcrumb>
+  <span slot="separator">›</span>
+  <ar-breadcrumb-item label="Accueil" href="/accueil"></ar-breadcrumb-item>
+  <ar-breadcrumb-item label="Item-1" href="/journal"></ar-breadcrumb-item>
+  <ar-breadcrumb-item label="Item actuel"></ar-breadcrumb-item>
+</ar-breadcrumb>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Séparateur en icône</h3>
+            <p class="ks-variant-desc">Une icône SVG comme séparateur ; le contenu slotté fixe sa propre taille (width et height).</p>
+            <ar-breadcrumb>
+  <svg slot="separator" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+  <ar-breadcrumb-item label="Accueil" href="/accueil"></ar-breadcrumb-item>
+  <ar-breadcrumb-item label="Item-1" href="/journal"></ar-breadcrumb-item>
+  <ar-breadcrumb-item label="Item actuel"></ar-breadcrumb-item>
+</ar-breadcrumb>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-breadcrumb-item">
+        <h2>ar-breadcrumb-item</h2>
+        <p class="ks-summary">Représente un lien individuel dans un fil d'ariane, typiquement un par niveau de la hiérarchie du site.</p>
+        <p class="ks-todo">Démo à compléter — aucun variant documenté pour ce composant.</p>
+    </section>
+
+    <section class="ks-component" id="ar-charcounter">
+        <h2>ar-charcounter</h2>
+        <p class="ks-summary">Affiche le nombre de caractères restants pour un champ de texte, et prévient avant d'atteindre la limite.</p>
+        
+        <div class="ks-variant">
+            <h3>Par défaut</h3>
+            <p class="ks-variant-desc">Compteur lié à un champ texte via `for`. Affiche le nombre de caractères restants.
+Passe en état `warning` quand il reste ≤ 20 % de la limite (seuil par défaut),
+puis en état `error` quand la limite est dépassée.
+</p>
+            <div class="ar-field-group" style="max-width:400px;">
+    <label class="ar-label" for="cc-default">Message</label>
+    <textarea class="ar-input" id="cc-default" rows="3"></textarea>
+    <ar-charcounter id="cc-default-counter" for="cc-default" max="100"></ar-charcounter>
+</div>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Seuil d'avertissement personnalisé</h3>
+            <p class="ks-variant-desc">`warn-threshold="15"` déclenche l'état `warning` quand il reste ≤ 15 caractères.
+La zone de texte est pré-remplie pour illustrer l'état d'avertissement (45 caractères sur 60).
+</p>
+            <div class="ar-field-group" style="max-width:400px;">
+    <label class="ar-label" for="cc-warn">Description</label>
+    <textarea class="ar-input" id="cc-warn" rows="3">Voici un exemple de texte assez long pour déclencher</textarea>
+    <ar-charcounter id="cc-warn-counter" for="cc-warn" max="60" warn-threshold="15"></ar-charcounter>
+</div>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Icônes dans les slots</h3>
+            <p class="ks-variant-desc">Les slots `warning-icon` et `error-icon` permettent d'ajouter un signal non-couleur
+conforme WCAG 1.4.1. Le contenu du slot est rendu à côté du compteur dans l'état correspondant.
+</p>
+            <div class="ar-field-group" style="max-width:400px;">
+    <label class="ar-label" for="cc-icon">Commentaire</label>
+    <textarea class="ar-input" id="cc-icon" rows="3"></textarea>
+    <ar-charcounter id="cc-icon-counter" for="cc-icon" max="80">
+        <span slot="warning-icon" aria-hidden="true">⚠️</span>
+        <span slot="error-icon" aria-hidden="true">❌</span>
+    </ar-charcounter>
+</div>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Label personnalisé</h3>
+            <p class="ks-variant-desc">La prop `label` accepte la syntaxe `"singulier|pluriel"` — le composant choisit
+automatiquement la forme selon le nombre de caractères restants. Le même label
+est utilisé dans les annonces `aria-live` : l'annonce de passage en avertissement
+dit par exemple _"1 caractère restant"_ ou _"12 caractères restants"_.
+Sans pipe, le label est utilisé tel quel (compatibilité descendante).
+</p>
+            <div class="ar-field-group" style="max-width:400px;">
+    <label class="ar-label" for="cc-label">Bio</label>
+    <textarea class="ar-input" id="cc-label" rows="3"></textarea>
+    <ar-charcounter id="cc-label-counter" for="cc-label" max="150" label="character remaining|characters remaining"></ar-charcounter>
+</div>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-collapse">
+        <h2>ar-collapse</h2>
+        <p class="ks-summary">Affiche un résumé et se déplie pour révéler du contenu additionnel. À utiliser pour divulguer progressivement de l'information, grouper des FAQ, ou masquer des options avancées — combinez plusieurs instances pour un comportement accordéon.</p>
+        
+        <div class="ks-variant">
+            <h3>Standalone</h3>
+            <p class="ks-variant-desc">Collapse simple avec un trigger interne via `slot="trigger"`.
+L'animation de hauteur est activée via `--ar-collapse-duration`.
+</p>
+            <ar-collapse style="--ar-collapse-duration:200ms;--ar-collapse-easing:ease">
+    <button slot="trigger" class="ar-btn ar-btn-secondary">Voir plus</button>
+    <div style="padding-top:1rem">
+        <p style="margin:0">Contenu qui se révèle à l'ouverture. Peut contenir n'importe quel HTML.</p>
+    </div>
+</ar-collapse>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Ouvert par défaut</h3>
+            <p class="ks-variant-desc">L'attribut `open` ouvre le panel sans animation au chargement.</p>
+            <ar-collapse open style="--ar-collapse-duration:200ms">
+    <button slot="trigger" class="ar-btn ar-btn-secondary">Fermer</button>
+    <div style="padding-top:1rem">
+        <p style="margin:0">Contenu visible dès le chargement.</p>
+    </div>
+</ar-collapse>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Accordéon (name)</h3>
+            <p class="ks-variant-desc">Tous les `ar-collapse` partageant le même attribut `name` forment un groupe accordéon :
+ouvrir un item ferme automatiquement les autres.
+</p>
+            <div style="display:flex;flex-direction:column;gap:0.5rem">
+    <ar-collapse name="faq" style="--ar-collapse-duration:200ms">
+        <button slot="trigger" class="ar-btn ar-btn-secondary">Question 1</button>
+        <div style="padding:0.75rem 0"><p style="margin:0">Réponse à la question 1.</p></div>
+    </ar-collapse>
+    <ar-collapse name="faq" style="--ar-collapse-duration:200ms">
+        <button slot="trigger" class="ar-btn ar-btn-secondary">Question 2</button>
+        <div style="padding:0.75rem 0"><p style="margin:0">Réponse à la question 2.</p></div>
+    </ar-collapse>
+    <ar-collapse name="faq" style="--ar-collapse-duration:200ms">
+        <button slot="trigger" class="ar-btn ar-btn-secondary">Question 3</button>
+        <div style="padding:0.75rem 0"><p style="margin:0">Réponse à la question 3.</p></div>
+    </ar-collapse>
+</div>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Trigger externe (for)</h3>
+            <p class="ks-variant-desc">L'attribut `for` accepte l'ID d'un bouton natif situé n'importe où dans la page.
+`aria-expanded` et `aria-controls` sont posés automatiquement sur ce bouton.
+</p>
+            <div>
+    <button id="ar-doc-collapse-ext" class="ar-btn ar-btn-secondary">Révéler le contenu</button>
+    <ar-collapse for="ar-doc-collapse-ext" style="--ar-collapse-duration:200ms">
+        <div style="padding-top:0.75rem">
+            <p style="margin:0">Contenu piloté par un trigger externe. Utile quand trigger et panel ne peuvent pas être enveloppés dans un wrapper commun.</p>
+        </div>
+    </ar-collapse>
+</div>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Trigger après le contenu</h3>
+            <p class="ks-variant-desc">`trigger-position="after"` place le trigger après le contenu dans le DOM (et visuellement).
+Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tronqué.
+</p>
+            <div>
+    <p style="margin:0 0 0.5rem">Les chimpanzés utilisent des outils, communiquent par gestes et sons, vivent en groupes sociaux complexes avec hiérarchies et alliances.</p>
+    <ar-collapse trigger-position="after" style="--ar-collapse-duration:200ms">
+        <div style="padding-bottom: 0.5rem">
+            <p style="margin:0 0 0.5rem">Leur génome est similaire à 98,7 % à celui de l'humain. Ils fabriquent des outils en bois pour extraire des termites, et utilisent des pierres comme enclumes pour casser des noix.</p>
+            <p style="margin:0">Les femelles transmettent ces techniques à leurs petits, une forme d'apprentissage culturel rare dans le règne animal.</p>
+        </div>
+        <button slot="trigger" style="background:none;border:none;padding:0.25rem 0 0;color:var(--ar-color-interactive,#283276);text-decoration:underline;cursor:pointer;font:inherit">Lire la suite ↓</button>
+    </ar-collapse>
+</div>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Désactivé</h3>
+            <p class="ks-variant-desc">L'attribut `disabled` bloque l'interaction. Le composant pose `disabled` et
+`aria-disabled="true"` sur le trigger interne.
+</p>
+            <ar-collapse disabled>
+    <button slot="trigger" class="ar-btn ar-btn-secondary">Toggle (désactivé)</button>
+    <div style="padding:0.75rem 0"><p>Ce contenu ne peut pas être révélé.</p></div>
+</ar-collapse>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-datepicker">
+        <h2>ar-datepicker</h2>
+        <p class="ks-summary">Affiche un champ de saisie de date synchronisé avec un calendrier popover, pour combiner saisie libre au clavier et sélection visuelle.</p>
+        
+        <div class="ks-variant">
+            <h3>undefined</h3>
+            <p class="ks-variant-desc">Date unique avec format français. Le hint par défaut (non surchargé ici) affiche automatiquement un exemple de date formatée.
+</p>
+            <ar-datepicker
+  label="Date de naissance"
+  format="dd/MM/yyyy"
+  lang="fr-FR"
+></ar-datepicker>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>undefined</h3>
+            <p class="ks-variant-desc">État d'erreur visible via le slot error.</p>
+            <ar-datepicker label="Date de naissance">
+  <span slot="error">Date invalide ou hors plage autorisée</span>
+</ar-datepicker>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>undefined</h3>
+            <p class="ks-variant-desc">Valeur affichée non modifiable, soumise au formulaire.</p>
+            <ar-datepicker value="2026-06-12" readonly label="Date"></ar-datepicker>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>undefined</h3>
+            <p class="ks-variant-desc">Composant désactivé, valeur exclue du formulaire.</p>
+            <ar-datepicker value="2026-06-12" disabled label="Date"></ar-datepicker>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>undefined</h3>
+            <p class="ks-variant-desc">`min` et `max` restreignent les jours sélectionnables (grisés, `aria-disabled`). Le hint par défaut annonce la plage aux technologies d'assistance sans configuration supplémentaire.
+</p>
+            <ar-datepicker
+  label="Date de rendez-vous"
+  min="2026-01-01"
+  max="2026-12-31"
+  lang="fr-FR"
+></ar-datepicker>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>undefined</h3>
+            <p class="ks-variant-desc">L'attribut `lang` pilote la totalité des textes et formats — y compris les textes par défaut des slots — à l'exception du label de l'input.
+</p>
+            <ar-datepicker
+  label="Date of birth"
+  format="MM/dd/yyyy"
+  lang="en-US"
+></ar-datepicker>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-dialog">
+        <h2>ar-dialog</h2>
+        <p class="ks-summary">Apparaît au-dessus de la page (modal) ou glisse depuis le bord de l'écran (drawer) pour capter l'attention de l'utilisateur. À utiliser pour des confirmations, formulaires, menus de navigation, ou toute tâche focalisée qui interrompt le flux principal.</p>
+        
+        <div class="ks-variant">
+            <h3>Modal</h3>
+            <p class="ks-variant-desc">Dialog centré avec backdrop. Cliquer sur le bouton pour l'ouvrir.</p>
+            <button class="ar-btn ar-btn-primary" data-ar-dialog-open="demo-modal">Ouvrir la modale</button>
+<ar-dialog id="demo-modal" label="Informations importantes">
+    <p>Votre session expirera dans 5 minutes. Enregistrez votre travail pour ne pas perdre vos modifications.</p>
+</ar-dialog>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Drawer droit</h3>
+            <p class="ks-variant-desc">Panneau latéral glissant depuis la droite.</p>
+            <button class="ar-btn ar-btn-primary" data-ar-dialog-open="demo-drawer">Ouvrir le drawer</button>
+<ar-dialog id="demo-drawer" label="Filtres de recherche" mode="drawer">
+    <p>Contenu du panneau latéral.</p>
+</ar-dialog>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Drawer gauche</h3>
+            <p class="ks-variant-desc">Panneau latéral glissant depuis la gauche.</p>
+            <button class="ar-btn ar-btn-primary" data-ar-dialog-open="demo-drawer-left">Ouvrir le drawer gauche</button>
+<ar-dialog id="demo-drawer-left" label="Menu de navigation" mode="drawer" placement="left">
+    <p>Contenu du panneau latéral gauche.</p>
+</ar-dialog>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Fermeture au clic backdrop</h3>
+            <p class="ks-variant-desc">Par défaut, le backdrop est statique. Avec close-on-backdrop, un clic sur le fond ferme le dialog.</p>
+            <button class="ar-btn ar-btn-primary" data-ar-dialog-open="demo-backdrop">Ouvrir (close-on-backdrop)</button>
+<ar-dialog id="demo-backdrop" label="Informations" close-on-backdrop>
+    <p>Cliquez en dehors du dialog pour le fermer.</p>
+</ar-dialog>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Avec footer</h3>
+            <p class="ks-variant-desc">Zone d'actions en pied de page via slot="footer".</p>
+            <button class="ar-btn ar-btn-primary" data-ar-dialog-open="demo-footer">Ouvrir avec footer</button>
+<ar-dialog id="demo-footer" label="Confirmer la suppression">
+    <p>Cette action supprimera définitivement l'élément sélectionné.</p>
+    <button class="ar-btn ar-btn-secondary" slot="footer" data-ar-dismiss>Annuler</button>
+    <button class="ar-btn ar-btn-danger" slot="footer" data-ar-accept>Supprimer</button>
+</ar-dialog>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Actions dans le header</h3>
+            <p class="ks-variant-desc">Le slot header-actions permet d'ajouter des actions additionnelles avant le bouton de fermeture (ex. bouton plein écran).</p>
+            <button class="ar-btn ar-btn-primary" data-ar-dialog-open="demo-header-actions">Ouvrir</button>
+<ar-dialog id="demo-header-actions" label="Rapport mensuel">
+    <button class="ar-btn ar-btn-secondary" slot="header-actions" aria-label="Passer en plein écran" style="font-size: 1.5rem">⤢</button>
+    <p style="margin: 0">Contenu du dialog, avec une action additionnelle dans le header.</p>
+</ar-dialog>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Header avancé</h3>
+            <p class="ks-variant-desc">Un seul enfant slotté dans header-actions peut porter son propre layout — ici des actions à gauche et une pagination compacte à droite, titre du drawer masqué visuellement (sr-only) au profit d'un titre secondaire visible dans le contenu.</p>
+            <button class="ar-btn ar-btn-primary" data-ar-dialog-open="demo-header-advanced">Ouvrir le drawer</button>
+<ar-dialog id="demo-header-advanced" class="demo-header-advanced" label="Titre accessible du volet" mode="drawer">
+    <div slot="header-actions" class="demo-header-advanced-actions">
+        <div class="actions">
+            <button class="ar-btn ar-btn-primary">Action 1</button>
+            <button class="ar-btn ar-btn-secondary">Action 2</button>
+        </div>
+        <ar-pagination current="3" total="10"></ar-pagination>
+    </div>
+    <h2>Titre secondaire du volet</h2>
+    <p>Contenu du volet</p>
+</ar-dialog>
+<style>
+    /* Masquage accessible du titre */
+    .demo-header-advanced::part(title) {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+    }
+
+    /* Style minimal pour la layout de bloc d'actions */
+    .demo-header-advanced-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: 0.5rem;
+
+      .actions {
+        display: flex;
+        align-items: center;
+        flex: 1 1 100%;
+        gap: 0.5rem;
+      }
+    }
+</style>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Sans header</h3>
+            <p class="ks-variant-desc">without-header retire titre, actions et bouton de fermeture — label reste requis pour le nom accessible (aria-label). Prévoir un moyen de fermeture (ici close-on-backdrop).</p>
+            <button class="ar-btn ar-btn-primary" data-ar-dialog-open="demo-without-header">Ouvrir</button>
+<ar-dialog id="demo-without-header" label="Aperçu image" without-header close-on-backdrop>
+    <img src="https://placehold.co/480x270" alt="Aperçu" style="display:block;width:100%;" />
+</ar-dialog>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Focus initial</h3>
+            <p class="ks-variant-desc">Posez `autofocus` sur l'élément qui doit recevoir le focus à l'ouverture — ici un champ de recherche dans un drawer.</p>
+            <button class="ar-btn ar-btn-primary" data-ar-dialog-open="demo-autofocus">Ouvrir le drawer</button>
+<ar-dialog id="demo-autofocus" label="Rechercher" mode="drawer">
+    <input autofocus type="search" placeholder="Rechercher…" style="width:100%;padding:.5rem .75rem;border:1px solid var(--ar-color-border,#ccc);border-radius:.375rem;font-size:1rem;" />
+</ar-dialog>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Dialogs empilés</h3>
+            <p class="ks-variant-desc">Ouverture d'un second dialog depuis le premier — scroll lock et focus sont coordonnés. Escape ne ferme que le dialog au sommet.</p>
+            <button class="ar-btn ar-btn-primary" data-ar-dialog-open="demo-stacked-1">Ouvrir le dialog</button>
+<ar-dialog id="demo-stacked-1" label="Dialog principal">
+    <p>Ce dialog peut en ouvrir un second par-dessus.</p>
+    <button class="ar-btn ar-btn-secondary" data-ar-dialog-open="demo-stacked-2">Ouvrir un second dialog</button>
+</ar-dialog>
+<ar-dialog id="demo-stacked-2" label="Dialog secondaire">
+    <p>Dialog empilé. Escape ne ferme que ce dialog, pas le précédent.</p>
+</ar-dialog>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Fermeture bloquée</h3>
+            <p class="ks-variant-desc">ar-dialog-hide est annulable : le composant secoue le dialog et annonce automatiquement le blocage aux lecteurs d'écran. Seul le bouton Confirmer ferme.</p>
+            <button class="ar-btn ar-btn-primary" data-ar-dialog-open="demo-persistent">Ouvrir le dialog persistant</button>
+<ar-dialog id="demo-persistent" label="Action requise" prevented-message="Fermeture bloquée — utilisez le bouton Confirmer.">
+    <p>Ce dialog ne peut être fermé que via le bouton <strong>Confirmer</strong>. Escape et le bouton de fermeture sont interceptés.</p>
+    <button class="ar-btn ar-btn-primary" slot="footer" data-ar-accept>Confirmer</button>
+</ar-dialog>
+<script>
+    (function () {
+        var dialog = document.getElementById('demo-persistent');
+        if (!dialog) return;
+        var confirming = false;
+        dialog.addEventListener('ar-dialog-accepted', function () { confirming = true; });
+        dialog.addEventListener('ar-dialog-hide', function (e) { if (!confirming) e.preventDefault(); confirming = false; });
+        dialog.addEventListener('ar-dialog-dismissed', function (e) { e.preventDefault(); });
+    })();
+</script>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-dropdown">
+        <h2>ar-dropdown</h2>
+        <p class="ks-summary">Affiche un panneau contextuel déclenché par un bouton, positionné automatiquement autour de lui. À utiliser pour des menus d'actions, des filtres, ou tout contenu additionnel qui ne justifie pas un dialog.</p>
+        
+        <div class="ks-variant">
+            <h3>Mode menu</h3>
+            <p class="ks-variant-desc">Avec des ar-dropdown-item, le panel reçoit automatiquement role="menu" et la navigation clavier est activée (↑↓ Home End Escape Tab).</p>
+            <ar-dropdown>
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Actions ▾</button>
+    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Séparateur</h3>
+            <p class="ks-variant-desc">Un `&lt;hr&gt;` placé entre des `ar-dropdown-item` reçoit automatiquement `role="separator"`. Stylez-le avec votre propre CSS — ici via une variable CSS du token de bordure.
+</p>
+            <ar-dropdown>
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Actions ▾</button>
+    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
+    <hr style="border:none;border-top:1px solid var(--ar-color-border,#e5e7eb);margin:.25rem 0;">
+    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Contenu libre</h3>
+            <p class="ks-variant-desc">Sans ar-dropdown-item, le panel est un conteneur libre — aucun role ni navigation clavier n'est ajouté.</p>
+            <ar-dropdown>
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Options ▾</button>
+    <p style="padding: .5rem .75rem; margin: 0; color: var(--ar-color-text, inherit);">Contenu libre — formulaire, liste, texte…</p>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Placement top-end</h3>
+            <p class="ks-variant-desc">Le panel s'ouvre au-dessus du trigger, aligné à droite.</p>
+            <ar-dropdown placement="top-end">
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Placement ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Distance personnalisée</h3>
+            <p class="ks-variant-desc">Espacement en pixels entre le trigger et le panel (axe principal), piloté par la custom property CSS `--ar-dropdown-distance` (défaut : `var(--ar-anchor-distance)`, 4px).</p>
+            <ar-dropdown style="--ar-dropdown-distance: 16px">
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Distance 16px ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 3</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Offset latéral</h3>
+            <p class="ks-variant-desc">Décalage latéral en pixels du panel par rapport au trigger (axe transversal), piloté par la custom property CSS `--ar-dropdown-offset` (défaut : `var(--ar-anchor-offset)`, 0).</p>
+            <ar-dropdown style="--ar-dropdown-offset: 32px">
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Offset 32px ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 3</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Trigger externe</h3>
+            <p class="ks-variant-desc">L'attribut `for` accepte l'ID d'un élément déclencheur situé en dehors du composant. Utile pour les boutons dans une barre d'outils ou une autre zone de la page.</p>
+            <button class="ar-btn ar-btn-secondary" id="ar-doc-ext-trigger">Trigger externe ▾</button>
+<ar-dropdown for="ar-doc-ext-trigger">
+    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Désactivé</h3>
+            <p class="ks-variant-desc">Combine `disabled` sur `ar-dropdown` et `aria-disabled="true"` sur le trigger — voir la
+section Accessibilité pour le détail. WCAG exempte les composants désactivés des
+exigences de contraste : `opacity: .5` est donc conforme.
+</p>
+            <ar-dropdown disabled>
+    <button
+        class="ar-btn ar-btn-secondary"
+        slot="trigger"
+        aria-disabled="true"
+        aria-describedby="disabled-reason"
+        style="opacity:.5;cursor:not-allowed;"
+    >Actions ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+</ar-dropdown>
+<p id="disabled-reason" style="margin-top:.5rem;font-size:.875rem;color:var(--ar-color-text-muted,#6b7280);">
+    Droits insuffisants pour effectuer cette action.
+</p>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-dropdown-item">
+        <h2>ar-dropdown-item</h2>
+        <p class="ks-summary">Représente une action individuelle dans un panneau ar-dropdown utilisé en mode menu.</p>
+        <p class="ks-todo">Démo à compléter — aucun variant documenté pour ce composant.</p>
+    </section>
+
+    <section class="ks-component" id="ar-pagination">
+        <h2>ar-pagination</h2>
+        <p class="ks-summary">Découpe une longue liste de contenu en pages, et permet à l'utilisateur de naviguer entre elles.</p>
+        
+        <div class="ks-variant">
+            <h3>Par défaut</h3>
+            <p class="ks-variant-desc">Pagination sans attributs (valeurs par défaut du composant).</p>
+            <ar-pagination></ar-pagination>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>20 pages</h3>
+            <p class="ks-variant-desc">Pagination à 20 pages, page 10 active (milieu de la liste).</p>
+            <ar-pagination current="10" total="20"></ar-pagination>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>20 pages (current en début)</h3>
+            <p class="ks-variant-desc">Pagination à 20 pages, page 5 active (début de la liste).</p>
+            <ar-pagination current="5" total="20"></ar-pagination>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>20 pages (current en fin)</h3>
+            <p class="ks-variant-desc">Pagination à 20 pages, page 18 active (fin de la liste).</p>
+            <ar-pagination current="18" total="20"></ar-pagination>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Mode compact</h3>
+            <p class="ks-variant-desc">Mode compact — uniquement précédent/suivant et un label de position, identique en mobile et desktop.</p>
+            <ar-pagination compact current="4" total="12"></ar-pagination>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-progressbar">
+        <h2>ar-progressbar</h2>
+        <p class="ks-summary">Affiche l'avancement d'une opération en cours sous forme de barre horizontale. À utiliser pour un upload de fichier, un parcours en plusieurs étapes, ou toute tâche à progression mesurable.</p>
+        
+        <div class="ks-variant">
+            <h3>Par défaut</h3>
+            <p class="ks-variant-desc">Barre de progression sans attribut — affiche l'état 0 % sans label.</p>
+            <ar-progressbar></ar-progressbar>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Upload</h3>
+            <p class="ks-variant-desc">Suivi de l'upload d'un fichier.</p>
+            <ar-progressbar percent="10">
+  <!-- Contenu au choix -->
+  Import du fichier :&nbsp;<br role="none" />
+  <strong title="mon-document-a-partager.pdf">
+      mon-document-a-partager.pdf
+  </strong>
+</ar-progressbar>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-spinner">
+        <h2>ar-spinner</h2>
+        <p class="ks-summary">Indique qu'une opération est en cours quand sa durée est inconnue. À utiliser pour un état de chargement là où une barre de progression déterminée n'est pas pertinente.</p>
+        
+        <div class="ks-variant">
+            <h3>Par défaut (moyen)</h3>
+            <p class="ks-variant-desc">Spinner sans attribut size (taille md par défaut).</p>
+            <ar-spinner></ar-spinner>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Très petit</h3>
+            <p class="ks-variant-desc">Spinner avec size="xs".</p>
+            <ar-spinner size="xs"></ar-spinner>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Petit</h3>
+            <p class="ks-variant-desc">Spinner avec size="sm".</p>
+            <ar-spinner size="sm"></ar-spinner>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Grand</h3>
+            <p class="ks-variant-desc">Spinner avec size="lg".</p>
+            <ar-spinner size="lg"></ar-spinner>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Toutes les tailles</h3>
+            <p class="ks-variant-desc">Les 4 tailles disponibles affichées côte à côte (xs, sm, md, lg).</p>
+            <ar-spinner size="xs"></ar-spinner>
+<ar-spinner size="sm"></ar-spinner>
+<ar-spinner></ar-spinner>
+<ar-spinner size="lg"></ar-spinner>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-stepper">
+        <h2>ar-stepper</h2>
+        <p class="ks-summary">Affiche la progression de l'utilisateur à travers une séquence d'étapes, avec prise en charge des sous-étapes. À utiliser pour des parcours de création ou de modification en plusieurs étapes.</p>
+        
+        <div class="ks-variant">
+            <h3>Par défaut</h3>
+            <p class="ks-variant-desc">Stepper à 3 étapes avec sous-étapes, sous-étape « Mes coordonnées » active.</p>
+            <ar-stepper current-path="etape-1-3">
+  <!-- Étape 1 -->
+  <ar-stepper-item path="etape-1" label="Mes informations" href="/etape-1">
+      <ar-stepper-item path="etape-1-1" label="Mon état civil" href="#etape-1-1"></ar-stepper-item>
+      <ar-stepper-item path="etape-1-2" label="Mes coordonnées" href="#etape-1-2"></ar-stepper-item>
+      <ar-stepper-item path="etape-1-3" label="Mes identifiants" href="#etape-1-3"></ar-stepper-item>
+  </ar-stepper-item>
+
+  <!-- Étape 2 -->
+  <ar-stepper-item path="etape-2" label="Mes préférences" href="/etape-2">
+      <ar-stepper-item path="etape-2-1" label="Mes notifications" href="/etape-2-1"></ar-stepper-item>
+      <ar-stepper-item path="etape-2-2" label="Mes langues" href="/etape-2-2"></ar-stepper-item>
+  </ar-stepper-item>
+
+  <!-- Étape 3 -->
+  <ar-stepper-item path="etape-3" label="Récapitulatif"></ar-stepper-item>
+</ar-stepper>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Mode édition</h3>
+            <p class="ks-variant-desc">Même structure en mode édition — toutes les étapes passées sont cliquables.</p>
+            <ar-stepper current-path="etape-1-2" mode="edit">
+  <!-- Étape 1 -->
+  <ar-stepper-item path="etape-1" label="Mes informations" href="#">
+      <ar-stepper-item path="etape-1-1" label="Mon état civil" href="#"></ar-stepper-item>
+      <ar-stepper-item path="etape-1-2" label="Mes coordonnées" href="#"></ar-stepper-item>
+      <ar-stepper-item path="etape-1-3" label="Mes identifiants" href="#"></ar-stepper-item>
+  </ar-stepper-item>
+
+  <!-- Étape 2 -->
+  <ar-stepper-item path="etape-2" label="Mes préférences" href="#">
+      <ar-stepper-item path="etape-2-1" label="Mes notifications" href="#etape-2-1"></ar-stepper-item>
+      <ar-stepper-item path="etape-2-2" label="Mes langues" href="#etape-2-2"></ar-stepper-item>
+  </ar-stepper-item>
+
+  <!-- Étape 3 -->
+  <ar-stepper-item path="etape-3" label="Récapitulatif"></ar-stepper-item>
+</ar-stepper>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Information après label</h3>
+            <p class="ks-variant-desc">Ajouter une information complémentaire au label d'une sous-étape</p>
+            <ar-stepper current-path="etape-1-1" mode="edit">
+    <!-- Étape 1 -->
+    <ar-stepper-item path="etape-1" label="Mes informations" href="#">
+        <ar-stepper-item path="etape-1-1" label="Mon état civil" href="#"></ar-stepper-item>
+        <ar-stepper-item path="etape-1-2" label="Mes coordonnées" href="#">
+            <span slot="after-label">
+                <span id="etape-1-2-info">
+                    <span class="sr-only">Cette étape nécessite votre attention</span>
+                    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24" style="display:block; color:var(--ar-stepper-item-current-header-color)">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"></path>
+                    </svg>
+                </span>
+                <ar-tooltip for="etape-1-2-info">Texte d'aide contextuelle</ar-tooltip>
+            </span>
+        </ar-stepper-item>
+        <ar-stepper-item path="etape-1-3" label="Mes identifiants" href="#"></ar-stepper-item>
+    </ar-stepper-item>
+
+    <!-- Étape 2 -->
+    <ar-stepper-item path="etape-2" label="Mes préférences" href="#">
+        <ar-stepper-item path="etape-2-1" label="Mes notifications" href="#etape-2-1"></ar-stepper-item>
+        <ar-stepper-item path="etape-2-2" label="Mes langues" href="#etape-2-2"></ar-stepper-item>
+    </ar-stepper-item>
+
+    <!-- Étape 3 -->
+    <ar-stepper-item path="etape-3" label="Récapitulatif"></ar-stepper-item>
+</ar-stepper>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Alignement inversé</h3>
+            <p class="ks-variant-desc">Inverse l'alignement de la liste d'étapes en mode desktop. S'appuie sur des règles posées sur les parts control et indicator d'ar-stepper-item — un thème qui les redéfinit peut désactiver l'inversion.</p>
+            <ar-stepper current-path="etape-1-2" reverse-align>
+  <!-- Étape 1 -->
+  <ar-stepper-item path="etape-1" label="Mes informations" href="#">
+      <ar-stepper-item path="etape-1-1" label="Mon état civil" href="#"></ar-stepper-item>
+      <ar-stepper-item path="etape-1-2" label="Mes coordonnées" href="#"></ar-stepper-item>
+      <ar-stepper-item path="etape-1-3" label="Mes identifiants" href="#"></ar-stepper-item>
+  </ar-stepper-item>
+  <!-- Étape 2 -->
+  <ar-stepper-item path="etape-2" label="Mes préférences" href="#">
+      <ar-stepper-item path="etape-2-1" label="Mes notifications" href="#etape-2-1"></ar-stepper-item>
+      <ar-stepper-item path="etape-2-2" label="Mes langues" href="#etape-2-2"></ar-stepper-item>
+  </ar-stepper-item>
+  <!-- Étape 3 -->
+  <ar-stepper-item path="etape-3" label="Récapitulatif"></ar-stepper-item>
+</ar-stepper>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-stepper-item">
+        <h2>ar-stepper-item</h2>
+        <p class="ks-summary">Représente une étape ou sous-étape individuelle dans un ar-stepper.</p>
+        <p class="ks-todo">Démo à compléter — aucun variant documenté pour ce composant.</p>
+    </section>
+
+    <section class="ks-component" id="ar-tab">
+        <h2>ar-tab</h2>
+        <p class="ks-summary">Nomme et active un panneau individuel dans un groupe d'onglets.</p>
+        <p class="ks-todo">Démo à compléter — aucun variant documenté pour ce composant.</p>
+    </section>
+
+    <section class="ks-component" id="ar-tab-group">
+        <h2>ar-tab-group</h2>
+        <p class="ks-summary">Organise du contenu associé dans un même conteneur qui affiche un panneau à la fois, avec des onglets pour naviguer entre eux.</p>
+        
+        <div class="ks-variant">
+            <h3>Par défaut</h3>
+            <p class="ks-variant-desc">Déclarer les onglets avec `&lt;ar-tab panel="nom"&gt;` et les panneaux avec `&lt;ar-tab-panel name="nom"&gt;`. L'association se fait par correspondance du nom.</p>
+            <ar-tab-group>
+    <ar-tab panel="intro">Introduction</ar-tab>
+    <ar-tab panel="usage">Utilisation</ar-tab>
+    <ar-tab panel="api">API</ar-tab>
+    <ar-tab-panel name="intro" style="padding: 0.75rem 1rem">Contenu de l'onglet Introduction.</ar-tab-panel>
+    <ar-tab-panel name="usage" style="padding: 0.75rem 1rem">Contenu de l'onglet Utilisation.</ar-tab-panel>
+    <ar-tab-panel name="api" style="padding: 0.75rem 1rem">Contenu de l'onglet API.</ar-tab-panel>
+</ar-tab-group>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Onglet initial</h3>
+            <p class="ks-variant-desc">Utilisez l'attribut `active` pour définir l'onglet ouvert par défaut.</p>
+            <ar-tab-group active="usage">
+    <ar-tab panel="intro">Introduction</ar-tab>
+    <ar-tab panel="usage">Utilisation</ar-tab>
+    <ar-tab panel="api">API</ar-tab>
+    <ar-tab-panel name="intro" style="padding: 0.75rem 1rem">Introduction.</ar-tab-panel>
+    <ar-tab-panel name="usage" style="padding: 0.75rem 1rem">Cet onglet est actif par défaut.</ar-tab-panel>
+    <ar-tab-panel name="api" style="padding: 0.75rem 1rem">API.</ar-tab-panel>
+</ar-tab-group>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Onglet désactivé</h3>
+            <p class="ks-variant-desc">L'attribut `disabled` sur un `&lt;ar-tab&gt;` rend l'onglet non sélectionnable et l'exclut de la navigation clavier.</p>
+            <ar-tab-group>
+    <ar-tab panel="a">Actif</ar-tab>
+    <ar-tab panel="b" disabled>Désactivé</ar-tab>
+    <ar-tab panel="c">Actif aussi</ar-tab>
+    <ar-tab-panel name="a" style="padding: 0.75rem 1rem">Panel A.</ar-tab-panel>
+    <ar-tab-panel name="b" style="padding: 0.75rem 1rem">Panel B (inaccessible).</ar-tab-panel>
+    <ar-tab-panel name="c" style="padding: 0.75rem 1rem">Panel C.</ar-tab-panel>
+</ar-tab-group>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Activation manuelle</h3>
+            <p class="ks-variant-desc">Avec `manual-activation`, les flèches déplacent le focus sans changer l'onglet actif — il faut appuyer sur Entrée ou Espace pour confirmer. Utile quand le contenu du panel est coûteux à charger.</p>
+            <ar-tab-group manual-activation>
+    <ar-tab panel="a">Tab A</ar-tab>
+    <ar-tab panel="b">Tab B</ar-tab>
+    <ar-tab panel="c">Tab C</ar-tab>
+    <ar-tab-panel name="a" style="padding: 0.75rem 1rem">Panel A.</ar-tab-panel>
+    <ar-tab-panel name="b" style="padding: 0.75rem 1rem">Panel B.</ar-tab-panel>
+    <ar-tab-panel name="c" style="padding: 0.75rem 1rem">Panel C.</ar-tab-panel>
+</ar-tab-group>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Boutons de scroll</h3>
+            <p class="ks-variant-desc">La méthode publique `scrollNav(direction, amount?)` permet de piloter facilement le défilement de la tablist sans accéder au shadow DOM. Dans l'exemple suivante, les boutons sont affichés/masqués via CSS `:has()` en fonction des classes `has-overflow-start` / `has-overflow-end`.</p>
+            <style>
+  .demo-scroll-nav {
+      max-width: 350px;
+      position: relative;
+  }
+  .demo-scroll-nav button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      border-radius: 0.375rem;
+      background: var(--doc-bg);
+      color: var(--ar-color-interactive);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: opacity 0.15s;
+      position: absolute;
+      top: .5rem;
+
+      &:hover {
+          background-color: var(--ar-color-bg-subtle);
+      }
+  }
+
+  .demo-scroll-nav .btn-start {
+      left: -1rem;
+  }
+
+  .demo-scroll-nav .btn-end {
+      right: -2.3rem;
+  }
+
+  .demo-scroll-nav:not(:has(ar-tab-group.has-overflow-start)) .btn-start,
+  .demo-scroll-nav:not(:has(ar-tab-group.has-overflow-end)) .btn-end {
+      opacity: 0.3;
+      pointer-events: none;
+  }
+</style>
+<div class="demo-scroll-nav">
+  <button class="btn-start" onclick="this.parentElement.querySelector('ar-tab-group').scrollNav('start')" aria-label="Défiler vers le début">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"><path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" /></svg>
+  </button>
+  <ar-tab-group>
+      <ar-tab panel="a">Premier onglet</ar-tab>
+      <ar-tab panel="b">Deuxième onglet</ar-tab>
+      <ar-tab panel="c">Troisième onglet</ar-tab>
+      <ar-tab panel="d">Quatrième onglet</ar-tab>
+      <ar-tab-panel name="a" style="padding: 0.75rem 1rem">Panel A.</ar-tab-panel>
+      <ar-tab-panel name="b" style="padding: 0.75rem 1rem">Panel B.</ar-tab-panel>
+      <ar-tab-panel name="c" style="padding: 0.75rem 1rem">Panel C.</ar-tab-panel>
+      <ar-tab-panel name="d" style="padding: 0.75rem 1rem">Panel D.</ar-tab-panel>
+  </ar-tab-group>
+  <button class="btn-end" onclick="this.parentElement.querySelector('ar-tab-group').scrollNav('end')" aria-label="Défiler vers la fin">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"><path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
+  </button>
+</div>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Scroll hints</h3>
+            <p class="ks-variant-desc">Les classes `has-overflow-start` et `has-overflow-end` sont posées automatiquement sur l'hôte. Cette démo branche un `mask-image` CSS sur ces classes pour signaler l'overflow en temps réel — aucun attribut requis.</p>
+            <style>
+    .demo-scroll ar-tab-group.has-overflow-start:not(.has-overflow-end)::part(nav) {
+        mask-image: linear-gradient(to right, transparent, black 3rem);
+    }
+    .demo-scroll ar-tab-group.has-overflow-end:not(.has-overflow-start)::part(nav) {
+        mask-image: linear-gradient(to left, transparent, black 3rem);
+    }
+    .demo-scroll ar-tab-group.has-overflow-start.has-overflow-end::part(nav) {
+        mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 3rem,
+            black calc(100% - 3rem),
+            transparent
+        );
+    }
+</style>
+<div class="demo-scroll" style="max-width: 300px;">
+    <ar-tab-group>
+        <ar-tab panel="a">Premier onglet</ar-tab>
+        <ar-tab panel="b">Deuxième onglet</ar-tab>
+        <ar-tab panel="c">Troisième onglet</ar-tab>
+        <ar-tab panel="d">Quatrième onglet</ar-tab>
+        <ar-tab-panel name="a" style="padding: 0.75rem 1rem">Panel A.</ar-tab-panel>
+        <ar-tab-panel name="b" style="padding: 0.75rem 1rem">Panel B.</ar-tab-panel>
+        <ar-tab-panel name="c" style="padding: 0.75rem 1rem">Panel C.</ar-tab-panel>
+        <ar-tab-panel name="d" style="padding: 0.75rem 1rem">Panel D.</ar-tab-panel>
+    </ar-tab-group>
+</div>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Avec thème personnalisé</h3>
+            <p class="ks-variant-desc">Les tokens `--ar-tab-*` permettent de changer le style de l'indicateur actif sans modifier le composant. Exemple — indicateur en haut (top border) et style pill.</p>
+            <style>
+    .demo-top ar-tab-group {
+        --ar-tab-group-border-top-width: 1px;
+        --ar-tab-group-border-bottom-width: 0;
+    }
+    .demo-top ar-tab {
+        --ar-tab-active-shadow: inset 0 3px 0 var(--ar-color-interactive);
+    }
+
+    .demo-pill ar-tab-group {
+      --ar-tab-group-border-top-width: 0;
+      --ar-tab-group-border-bottom-width: 0;
+    }
+    .demo-pill ar-tab {
+        --ar-tab-active-shadow: none;
+        border-radius: 9999px;
+    }
+    .demo-pill ar-tab::part(tab--selected) {
+        background: var(--ar-color-interactive-subtle);
+    }
+</style>
+<div style="display: flex; flex-direction: column; width: 100%;">
+    <p style="margin: 0 0 1.25rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--doc-text-muted, #6b7280);">Top border</p>
+    <div class="demo-top">
+        <ar-tab-group>
+            <ar-tab panel="a">Premier</ar-tab>
+            <ar-tab panel="b">Deuxième</ar-tab>
+            <ar-tab panel="c">Troisième</ar-tab>
+            <ar-tab-panel name="a" style="padding: 0.75rem 1rem">Panel A.</ar-tab-panel>
+            <ar-tab-panel name="b" style="padding: 0.75rem 1rem">Panel B.</ar-tab-panel>
+            <ar-tab-panel name="c" style="padding: 0.75rem 1rem">Panel C.</ar-tab-panel>
+        </ar-tab-group>
+    </div>
+    <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--doc-border, #e5e7eb);" />
+    <p style="margin: 0 0 1.25rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--doc-text-muted, #6b7280);">Pill</p>
+    <div class="demo-pill">
+        <ar-tab-group>
+            <ar-tab panel="a">Premier</ar-tab>
+            <ar-tab panel="b">Deuxième</ar-tab>
+            <ar-tab panel="c">Troisième</ar-tab>
+            <ar-tab-panel name="a" style="padding: 0.75rem 1rem">Panel A.</ar-tab-panel>
+            <ar-tab-panel name="b" style="padding: 0.75rem 1rem">Panel B.</ar-tab-panel>
+            <ar-tab-panel name="c" style="padding: 0.75rem 1rem">Panel C.</ar-tab-panel>
+        </ar-tab-group>
+    </div>
+</div>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-tab-panel">
+        <h2>ar-tab-panel</h2>
+        <p class="ks-summary">Contient le contenu affiché pour un onglet donné dans un groupe d'onglets.</p>
+        <p class="ks-todo">Démo à compléter — aucun variant documenté pour ce composant.</p>
+    </section>
+
+    <section class="ks-component" id="ar-table-sort">
+        <h2>ar-table-sort</h2>
+        <p class="ks-summary">Affiche un indicateur de tri sur un entête de colonne, avec confirmation asynchrone du résultat. À utiliser pour trier une liste de données côté serveur ou après un traitement asynchrone.</p>
+        
+        <div class="ks-variant">
+            <h3>Alphabétique</h3>
+            <p class="ks-variant-desc">Tri alphabétique (A → Z / Z → A). Cliquer sur l'entête émet `ar-table-sort-change`.
+Appeler `confirm()` pour valider le tri ou `reject()` pour annuler.
+</p>
+            <table style="border-collapse:collapse;font-family:inherit;">
+    <thead>
+        <tr>
+            <th style="padding:.5rem 1rem;text-align:left;border-bottom:1px solid var(--ar-color-border,#e5e7eb);">
+                <ar-table-sort type="alpha" id="demo-alpha">Nom</ar-table-sort>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td style="padding:.5rem 1rem;">Alice</td></tr>
+        <tr><td style="padding:.5rem 1rem;">Bob</td></tr>
+    </tbody>
+</table>
+<script type="module">
+    document.getElementById('demo-alpha').addEventListener('ar-table-sort-change', (e) => {
+        setTimeout(() => e.target.confirm(), 300);
+    });
+</script>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Numérique</h3>
+            <p class="ks-variant-desc">Tri numérique (croissant / décroissant).</p>
+            <table style="border-collapse:collapse;font-family:inherit;">
+    <thead>
+        <tr>
+            <th style="padding:.5rem 1rem;text-align:left;border-bottom:1px solid var(--ar-color-border,#e5e7eb);">
+                <ar-table-sort type="numeric" id="demo-numeric">Prix</ar-table-sort>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td style="padding:.5rem 1rem;">10 €</td></tr>
+        <tr><td style="padding:.5rem 1rem;">42 €</td></tr>
+    </tbody>
+</table>
+<script type="module">
+    document.getElementById('demo-numeric').addEventListener('ar-table-sort-change', (e) => {
+        setTimeout(() => e.target.confirm(), 300);
+    });
+</script>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Date</h3>
+            <p class="ks-variant-desc">Tri chronologique (plus ancien / plus récent).</p>
+            <table style="border-collapse:collapse;font-family:inherit;">
+    <thead>
+        <tr>
+            <th style="padding:.5rem 1rem;text-align:left;border-bottom:1px solid var(--ar-color-border,#e5e7eb);">
+                <ar-table-sort type="date" id="demo-date">Date</ar-table-sort>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td style="padding:.5rem 1rem;">2024-01-15</td></tr>
+        <tr><td style="padding:.5rem 1rem;">2024-06-03</td></tr>
+    </tbody>
+</table>
+<script type="module">
+    document.getElementById('demo-date').addEventListener('ar-table-sort-change', (e) => {
+        setTimeout(() => e.target.confirm(), 300);
+    });
+</script>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Multi-colonnes</h3>
+            <p class="ks-variant-desc">Plusieurs colonnes triables — la coordination entre elles est manuelle (voir la section « Multi-colonnes »).</p>
+            <table style="border-collapse:collapse;font-family:inherit;" id="demo-multi">
+    <thead>
+        <tr>
+            <th style="padding:.5rem 1rem;text-align:left;border-bottom:1px solid var(--ar-color-border,#e5e7eb);">
+                <ar-table-sort type="alpha">Nom</ar-table-sort>
+            </th>
+            <th style="padding:.5rem 1rem;text-align:right;border-bottom:1px solid var(--ar-color-border,#e5e7eb);">
+                <ar-table-sort type="numeric">Prix</ar-table-sort>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding:.5rem 1rem;">Alice</td>
+            <td style="padding:.5rem 1rem;text-align:right;">42 €</td>
+        </tr>
+    </tbody>
+</table>
+<script type="module">
+    const sorters = document.getElementById('demo-multi').querySelectorAll('ar-table-sort');
+    sorters.forEach((sorter) => {
+        sorter.addEventListener('ar-table-sort-change', (e) => {
+            sorters.forEach((s) => { if (s !== e.target) s.reset(); });
+            setTimeout(() => e.target.confirm(), 300);
+        });
+    });
+</script>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Tri en échec</h3>
+            <p class="ks-variant-desc">Si le tri échoue, appeler `reject()` — le composant revient à son état précédent
+sans avancer dans le cycle.
+</p>
+            <table style="border-collapse:collapse;font-family:inherit;">
+    <thead>
+        <tr>
+            <th style="padding:.5rem 1rem;text-align:left;border-bottom:1px solid var(--ar-color-border,#e5e7eb);">
+                <ar-table-sort type="alpha" id="demo-reject">Nom (échec simulé)</ar-table-sort>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td style="padding:.5rem 1rem;">Alice</td></tr>
+    </tbody>
+</table>
+<script type="module">
+    document.getElementById('demo-reject').addEventListener('ar-table-sort-change', (e) => {
+        setTimeout(() => e.target.reject(), 500);
+    });
+</script>
+
+        </div>
+    </section>
+
+    <section class="ks-component" id="ar-tooltip">
+        <h2>ar-tooltip</h2>
+        <p class="ks-summary">Affiche une information contextuelle brève, non interactive, quand l'utilisateur survole ou focus un élément cible.
+
+Implémente WCAG 1.4.13 (Content on Hover or Focus) : la bulle reste
+accessible quand le pointeur se déplace du trigger vers la bulle.
+
+Le contenu doit rester non-interactif (spec ARIA role="tooltip").
+Pour du contenu riche ou cliquable, utiliser ar-dropdown.</p>
+        
+        <div class="ks-variant">
+            <h3>Par défaut</h3>
+            <p class="ks-variant-desc">Passez l'ID du trigger via `for`. La bulle s'affiche après `show-delay` ms (300 par défaut) et se masque après `hide-delay` ms (150 par défaut).</p>
+            <button id="tt-default" class="ar-btn ar-btn-secondary">Survolez-moi</button>
+<ar-tooltip for="tt-default">Texte d'aide contextuelle</ar-tooltip>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Placement</h3>
+            <p class="ks-variant-desc">Toutes les valeurs Floating UI sont supportées — `top`, `bottom`, `left`, `right` et leurs variantes `-start`/`-end`. Le composant bascule automatiquement si l'espace est insuffisant.</p>
+            <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;padding:2rem 0;">
+    <button id="tt-top" class="ar-btn ar-btn-secondary">top</button>
+    <ar-tooltip for="tt-top" placement="top">Placement top</ar-tooltip>
+
+    <button id="tt-bottom" class="ar-btn ar-btn-secondary">bottom</button>
+    <ar-tooltip for="tt-bottom" placement="bottom">Placement bottom</ar-tooltip>
+
+    <button id="tt-left" class="ar-btn ar-btn-secondary">left</button>
+    <ar-tooltip for="tt-left" placement="left">Placement left</ar-tooltip>
+
+    <button id="tt-right" class="ar-btn ar-btn-secondary">right</button>
+    <ar-tooltip for="tt-right" placement="right">Placement right</ar-tooltip>
+</div>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Sans caret</h3>
+            <p class="ks-variant-desc">Ajoutez `without-arrow` pour supprimer le caret directionnel — utile quand le tooltip est suffisamment proche du trigger ou dans un contexte visuel dense.</p>
+            <button id="tt-no-arrow" class="ar-btn ar-btn-secondary">Sans caret</button>
+<ar-tooltip for="tt-no-arrow" without-arrow>Tooltip sans caret</ar-tooltip>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Sur une abréviation</h3>
+            <p class="ks-variant-desc">Cas d'usage classique — `&lt;abbr&gt;` n'est pas interactif nativement, donc `tabindex="0"` est nécessaire pour que le tooltip soit accessible au clavier.</p>
+            <p style="font-size:1rem;">
+    Le composant suit
+    <abbr id="tt-wcag" tabindex="0" style="cursor:help;text-decoration:underline dotted;">WCAG 1.4.13</abbr>
+    pour garantir la persistance au survol.
+</p>
+<ar-tooltip for="tt-wcag">Web Content Accessibility Guidelines — critère 1.4.13 : Content on Hover or Focus</ar-tooltip>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Bouton icône</h3>
+            <p class="ks-variant-desc">Complète un bouton sans libellé textuel — le tooltip joue le rôle de description visible. Attention, il ne remplace pas un `aria-label` sur le bouton lui-même.</p>
+            <button id="tt-icon" class="ar-btn ar-btn-secondary" aria-label="Paramètres" style="width:2.5rem;height:2.5rem;padding:0;font-size:1.1rem;">⚙</button>
+<ar-tooltip for="tt-icon">Paramètres du compte</ar-tooltip>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Délais personnalisés</h3>
+            <p class="ks-variant-desc">`show-delay` et `hide-delay` contrôlent les temporisations en ms.
+Valeurs par défaut : 300 ms / 150 ms (conformes WCAG 1.4.13).
+Ici `show-delay="0"` pour une réponse immédiate.
+</p>
+            <button id="tt-fast" class="ar-btn ar-btn-secondary">Réponse immédiate</button>
+<ar-tooltip for="tt-fast" show-delay="0" hide-delay="0">Apparaît sans délai</ar-tooltip>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Désactivé</h3>
+            <p class="ks-variant-desc">L'attribut `disabled` bloque tout déclenchement sans modifier le DOM du trigger. Utile pour désactiver dynamiquement le tooltip selon le contexte.</p>
+            <button id="tt-disabled" class="ar-btn ar-btn-secondary">Hover (tooltip désactivé)</button>
+<ar-tooltip for="tt-disabled" disabled>Ce texte ne s'affichera pas</ar-tooltip>
+
+        </div>
+    </section>
+    </main>
+</body>
+</html>

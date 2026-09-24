@@ -1,0 +1,35 @@
+/**
+ * ariane-starter.css — thème de démarrage neutre pour Ariane.
+ * Généré depuis ariane.css (packages/core, monorepo jogo-labs/ariane) —
+ * ne pas éditer directement, régénéré à chaque publication de la lib.
+ * Fragments sous ./ariane-starter/ : copiez/adaptez-les à votre identité
+ * visuelle, ou supprimez ceux dont vous n'avez pas besoin.
+ *
+ * Usage :
+ *   <link rel="stylesheet" href="./ariane-starter.css">
+ */
+
+/* Theme setup */
+@import url('./ariane-starter/_palette.css') layer(ariane.theme);
+@import url('./ariane-starter/_semantic-tokens.css') layer(ariane.theme);
+@import url('./ariane-starter/_global-tokens.css') layer(ariane.theme);
+
+/* Shared by components */
+@import url('./ariane-starter/shared/_panel.css') layer(ariane.theme);
+@import url('./ariane-starter/shared/_anchor.css') layer(ariane.theme);
+
+/* Components */
+@import url('./ariane-starter/components/_alert.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_breadcrumb.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_charcounter.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_collapse.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_datepicker.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_dialog.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_dropdown.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_pagination.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_progressbar.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_spinner.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_stepper.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_tab.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_table-sort.css') layer(ariane.theme);
+@import url('./ariane-starter/components/_tooltip.css') layer(ariane.theme);
