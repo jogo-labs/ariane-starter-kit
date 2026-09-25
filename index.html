@@ -6,6 +6,8 @@
     <title>Kitchen Sink — Ariane Starter Kit</title>
     <script type="module" src="https://unpkg.com/@ariane-ui/core/cdn/autoloader.prod.js"></script>
     <link rel="stylesheet" href="./ariane-starter.css" />
+    <link rel="stylesheet" href="./presets/buttons.css" />
+    <link rel="stylesheet" href="./presets/fields.css" />
     <style>
         :root {
             --ks-bg: #f8fafc;
@@ -37,7 +39,14 @@
             }
         }
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: system-ui, sans-serif; background: var(--ks-bg); color: var(--ks-text); }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background: var(--ks-bg);
+            color: var(--ks-text);
+        }
         header.ks-nav {
             position: sticky;
             top: 0;
@@ -51,9 +60,11 @@
             color: var(--ks-nav-fg);
         }
         header.ks-nav a { color: inherit; text-decoration: none; }
-        .ks-nav-left { display: flex; align-items: baseline; gap: 0.5rem; font-weight: 600; }
-        .ks-nav-left .ks-logo { font-size: 1.05rem; }
-        .ks-nav-left .ks-nav-title { font-weight: 400; opacity: 0.75; font-size: 0.9rem; }
+        .ks-nav-left { display: flex; align-items: baseline; gap: 0.6rem; }
+        .ks-logo-link { display: flex; align-items: center; gap: 0.4rem; }
+        .ks-logo-mark { flex: none; display: block; }
+        .ks-logo { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; }
+        .ks-nav-title { font-weight: 400; opacity: 0.7; font-size: 0.85rem; }
         .ks-nav-right { display: flex; align-items: center; gap: 1rem; font-size: 0.875rem; }
         .ks-nav-right a { opacity: 0.85; }
         .ks-nav-right a:hover { opacity: 1; text-decoration: underline; }
@@ -68,35 +79,55 @@
             cursor: pointer;
         }
         .ks-theme-toggle:hover { background: rgba(255, 255, 255, 0.1); }
-        .ks-layout { display: flex; align-items: flex-start; }
+        .ks-layout { display: flex; align-items: stretch; }
         nav.ks-toc {
+            flex: none;
+            width: 240px;
+            border-right: 1px solid var(--ks-border);
+        }
+        .ks-toc-inner {
             position: sticky;
             top: 49px;
-            flex: none;
-            width: 220px;
             max-height: calc(100vh - 49px);
             overflow-y: auto;
             padding: 1.5rem 1rem;
-            border-right: 1px solid var(--ks-border);
         }
         nav.ks-toc a {
             display: block;
-            padding: 0.25rem 0.5rem;
+            padding: 0.3rem 0.6rem;
             margin-block-end: 0.125rem;
             border-radius: 4px;
             color: var(--ks-muted);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.875rem;
         }
         nav.ks-toc a:hover { background: var(--ks-bg-subtle); color: var(--ks-text); }
         main.ks-content { flex: 1; min-width: 0; max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-        section.ks-component { border-top: 1px solid var(--ks-border); padding-block: 2rem; }
+        section.ks-component { border-top: 1px solid var(--ks-border); padding-block: 2.5rem; }
         section.ks-component:first-child { border-top: none; padding-block-start: 0; }
-        section.ks-component h2 { margin: 0 0 0.25rem; font-size: 1.25rem; }
-        p.ks-summary { color: var(--ks-muted); margin: 0 0 1.5rem; }
-        div.ks-variant { margin-block-end: 1.5rem; }
-        div.ks-variant h3 { font-size: 0.95rem; margin: 0 0 0.25rem; }
-        p.ks-variant-desc { color: var(--ks-muted); font-size: 0.875rem; margin: 0 0 0.75rem; }
+        section.ks-component h2 {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin: 0 0 0.4rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        section.ks-component h2 code {
+            font-size: 0.75rem;
+            font-weight: 400;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            color: var(--ks-muted);
+            background: var(--ks-bg-subtle);
+            padding: 0.1rem 0.45rem;
+            border-radius: 4px;
+        }
+        p.ks-summary { color: var(--ks-muted); font-size: 0.95rem; line-height: 1.55; margin: 0 0 1.75rem; }
+        div.ks-variant { margin-block-end: 1.75rem; }
+        div.ks-variant h3 { font-size: 1rem; font-weight: 600; margin: 0 0 0.3rem; }
+        p.ks-variant-desc { color: var(--ks-muted); font-size: 0.875rem; line-height: 1.5; margin: 0 0 0.85rem; }
         p.ks-todo { color: #b45309; font-style: italic; }
         @media (max-width: 700px) {
             nav.ks-toc { display: none; }
@@ -106,7 +137,13 @@
 <body>
     <header class="ks-nav">
         <div class="ks-nav-left">
-            <span class="ks-logo">Ariane</span>
+            <a href="#" class="ks-logo-link" aria-label="Haut de page">
+                <svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true" class="ks-logo-mark">
+                    <path d="M2 18 C7 18 8 7 13 7 C17 7 19 11 20 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+                    <circle cx="13" cy="7" r="3" fill="currentColor" />
+                </svg>
+                <span class="ks-logo">Ariane</span>
+            </a>
             <span class="ks-nav-title">Kitchen Sink</span>
         </div>
         <div class="ks-nav-right">
@@ -117,24 +154,26 @@
     </header>
     <div class="ks-layout">
         <nav class="ks-toc" aria-label="Sommaire des composants">
-            <a href="#ar-alert">ar-alert</a>
-            <a href="#ar-breadcrumb">ar-breadcrumb</a>
-            <a href="#ar-charcounter">ar-charcounter</a>
-            <a href="#ar-collapse">ar-collapse</a>
-            <a href="#ar-datepicker">ar-datepicker</a>
-            <a href="#ar-dialog">ar-dialog</a>
-            <a href="#ar-dropdown">ar-dropdown</a>
-            <a href="#ar-pagination">ar-pagination</a>
-            <a href="#ar-progressbar">ar-progressbar</a>
-            <a href="#ar-spinner">ar-spinner</a>
-            <a href="#ar-stepper">ar-stepper</a>
-            <a href="#ar-tab-group">ar-tab-group</a>
-            <a href="#ar-table-sort">ar-table-sort</a>
-            <a href="#ar-tooltip">ar-tooltip</a>
+            <div class="ks-toc-inner">
+                <a href="#ar-alert">Alert</a>
+                <a href="#ar-breadcrumb">Breadcrumb</a>
+                <a href="#ar-charcounter">Char Counter</a>
+                <a href="#ar-collapse">Collapse</a>
+                <a href="#ar-datepicker">Datepicker</a>
+                <a href="#ar-dropdown">Dropdown</a>
+                <a href="#ar-dialog">Dialog</a>
+                <a href="#ar-pagination">Pagination</a>
+                <a href="#ar-progressbar">Progressbar</a>
+                <a href="#ar-spinner">Spinner</a>
+                <a href="#ar-stepper">Stepper</a>
+                <a href="#ar-tab-group">Tab Group</a>
+                <a href="#ar-table-sort">Table Sort</a>
+                <a href="#ar-tooltip">Tooltip</a>
+            </div>
         </nav>
         <main class="ks-content">
         <section class="ks-component" id="ar-alert">
-            <h2>ar-alert</h2>
+            <h2>Alert <code>ar-alert</code></h2>
             <p class="ks-summary">Affiche un message important intégré au contenu environnant. À utiliser pour des confirmations, avertissements, erreurs, ou toute information que l'utilisateur ne doit pas manquer.</p>
             
         <div class="ks-variant">
@@ -172,7 +211,7 @@
         </section>
 
         <section class="ks-component" id="ar-breadcrumb">
-            <h2>ar-breadcrumb</h2>
+            <h2>Breadcrumb <code>ar-breadcrumb</code></h2>
             <p class="ks-summary">Affiche un fil de liens qui montre à l'utilisateur sa position dans la hiérarchie du site, avec un affichage adapté au mobile et au desktop.</p>
             
         <div class="ks-variant">
@@ -213,7 +252,7 @@
         </section>
 
         <section class="ks-component" id="ar-charcounter">
-            <h2>ar-charcounter</h2>
+            <h2>Char Counter <code>ar-charcounter</code></h2>
             <p class="ks-summary">Affiche le nombre de caractères restants pour un champ de texte, et prévient avant d'atteindre la limite.</p>
             
         <div class="ks-variant">
@@ -277,7 +316,7 @@ Sans pipe, le label est utilisé tel quel (compatibilité descendante).
         </section>
 
         <section class="ks-component" id="ar-collapse">
-            <h2>ar-collapse</h2>
+            <h2>Collapse <code>ar-collapse</code></h2>
             <p class="ks-summary">Affiche un résumé et se déplie pour révéler du contenu additionnel. À utiliser pour divulguer progressivement de l'information, grouper des FAQ, ou masquer des options avancées — combinez plusieurs instances pour un comportement accordéon.</p>
             
         <div class="ks-variant">
@@ -376,7 +415,7 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
         </section>
 
         <section class="ks-component" id="ar-datepicker">
-            <h2>ar-datepicker</h2>
+            <h2>Datepicker <code>ar-datepicker</code></h2>
             <p class="ks-summary">Affiche un champ de saisie de date synchronisé avec un calendrier popover, pour combiner saisie libre au clavier et sélection visuelle.</p>
             
         <div class="ks-variant">
@@ -440,8 +479,118 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
         </div>
         </section>
 
+        <section class="ks-component" id="ar-dropdown">
+            <h2>Dropdown <code>ar-dropdown</code></h2>
+            <p class="ks-summary">Affiche un panneau contextuel déclenché par un bouton, positionné automatiquement autour de lui. À utiliser pour des menus d'actions, des filtres, ou tout contenu additionnel qui ne justifie pas un dialog.</p>
+            
+        <div class="ks-variant">
+            <h3>Mode menu</h3>
+            <p class="ks-variant-desc">Avec des ar-dropdown-item, le panel reçoit automatiquement role="menu" et la navigation clavier est activée (↑↓ Home End Escape Tab).</p>
+            <ar-dropdown>
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Actions ▾</button>
+    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Séparateur</h3>
+            <p class="ks-variant-desc">Un `&lt;hr&gt;` placé entre des `ar-dropdown-item` reçoit automatiquement `role="separator"`. Stylez-le avec votre propre CSS — ici via une variable CSS du token de bordure.
+</p>
+            <ar-dropdown>
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Actions ▾</button>
+    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
+    <hr style="border:none;border-top:1px solid var(--ar-color-border,#e5e7eb);margin:.25rem 0;">
+    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Contenu libre</h3>
+            <p class="ks-variant-desc">Sans ar-dropdown-item, le panel est un conteneur libre — aucun role ni navigation clavier n'est ajouté.</p>
+            <ar-dropdown>
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Options ▾</button>
+    <p style="padding: .5rem .75rem; margin: 0; color: var(--ar-color-text, inherit);">Contenu libre — formulaire, liste, texte…</p>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Placement top-end</h3>
+            <p class="ks-variant-desc">Le panel s'ouvre au-dessus du trigger, aligné à droite.</p>
+            <ar-dropdown placement="top-end">
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Placement ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Distance personnalisée</h3>
+            <p class="ks-variant-desc">Espacement en pixels entre le trigger et le panel (axe principal), piloté par la custom property CSS `--ar-dropdown-distance` (défaut : `var(--ar-anchor-distance)`, 4px).</p>
+            <ar-dropdown style="--ar-dropdown-distance: 16px">
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Distance 16px ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 3</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Offset latéral</h3>
+            <p class="ks-variant-desc">Décalage latéral en pixels du panel par rapport au trigger (axe transversal), piloté par la custom property CSS `--ar-dropdown-offset` (défaut : `var(--ar-anchor-offset)`, 0).</p>
+            <ar-dropdown style="--ar-dropdown-offset: 32px">
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Offset 32px ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 3</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Trigger externe</h3>
+            <p class="ks-variant-desc">L'attribut `for` accepte l'ID d'un élément déclencheur situé en dehors du composant. Utile pour les boutons dans une barre d'outils ou une autre zone de la page.</p>
+            <button class="ar-btn ar-btn-secondary" id="ar-doc-ext-trigger">Trigger externe ▾</button>
+<ar-dropdown for="ar-doc-ext-trigger">
+    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
+</ar-dropdown>
+
+        </div>
+
+        <div class="ks-variant">
+            <h3>Désactivé</h3>
+            <p class="ks-variant-desc">Combine `disabled` sur `ar-dropdown` et `aria-disabled="true"` sur le trigger — voir la
+section Accessibilité pour le détail. WCAG exempte les composants désactivés des
+exigences de contraste : `opacity: .5` est donc conforme.
+</p>
+            <ar-dropdown disabled>
+    <button
+        class="ar-btn ar-btn-secondary"
+        slot="trigger"
+        aria-disabled="true"
+        aria-describedby="disabled-reason"
+        style="opacity:.5;cursor:not-allowed;"
+    >Actions ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+</ar-dropdown>
+<p id="disabled-reason" style="margin-top:.5rem;font-size:.875rem;color:var(--ar-color-text-muted,#6b7280);">
+    Droits insuffisants pour effectuer cette action.
+</p>
+
+        </div>
+        </section>
+
         <section class="ks-component" id="ar-dialog">
-            <h2>ar-dialog</h2>
+            <h2>Dialog <code>ar-dialog</code></h2>
             <p class="ks-summary">Apparaît au-dessus de la page (modal) ou glisse depuis le bord de l'écran (drawer) pour capter l'attention de l'utilisateur. À utiliser pour des confirmations, formulaires, menus de navigation, ou toute tâche focalisée qui interrompt le flux principal.</p>
             
         <div class="ks-variant">
@@ -608,118 +757,8 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
         </div>
         </section>
 
-        <section class="ks-component" id="ar-dropdown">
-            <h2>ar-dropdown</h2>
-            <p class="ks-summary">Affiche un panneau contextuel déclenché par un bouton, positionné automatiquement autour de lui. À utiliser pour des menus d'actions, des filtres, ou tout contenu additionnel qui ne justifie pas un dialog.</p>
-            
-        <div class="ks-variant">
-            <h3>Mode menu</h3>
-            <p class="ks-variant-desc">Avec des ar-dropdown-item, le panel reçoit automatiquement role="menu" et la navigation clavier est activée (↑↓ Home End Escape Tab).</p>
-            <ar-dropdown>
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Actions ▾</button>
-    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
-</ar-dropdown>
-
-        </div>
-
-        <div class="ks-variant">
-            <h3>Séparateur</h3>
-            <p class="ks-variant-desc">Un `&lt;hr&gt;` placé entre des `ar-dropdown-item` reçoit automatiquement `role="separator"`. Stylez-le avec votre propre CSS — ici via une variable CSS du token de bordure.
-</p>
-            <ar-dropdown>
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Actions ▾</button>
-    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
-    <hr style="border:none;border-top:1px solid var(--ar-color-border,#e5e7eb);margin:.25rem 0;">
-    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
-</ar-dropdown>
-
-        </div>
-
-        <div class="ks-variant">
-            <h3>Contenu libre</h3>
-            <p class="ks-variant-desc">Sans ar-dropdown-item, le panel est un conteneur libre — aucun role ni navigation clavier n'est ajouté.</p>
-            <ar-dropdown>
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Options ▾</button>
-    <p style="padding: .5rem .75rem; margin: 0; color: var(--ar-color-text, inherit);">Contenu libre — formulaire, liste, texte…</p>
-</ar-dropdown>
-
-        </div>
-
-        <div class="ks-variant">
-            <h3>Placement top-end</h3>
-            <p class="ks-variant-desc">Le panel s'ouvre au-dessus du trigger, aligné à droite.</p>
-            <ar-dropdown placement="top-end">
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Placement ▾</button>
-    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
-</ar-dropdown>
-
-        </div>
-
-        <div class="ks-variant">
-            <h3>Distance personnalisée</h3>
-            <p class="ks-variant-desc">Espacement en pixels entre le trigger et le panel (axe principal), piloté par la custom property CSS `--ar-dropdown-distance` (défaut : `var(--ar-anchor-distance)`, 4px).</p>
-            <ar-dropdown style="--ar-dropdown-distance: 16px">
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Distance 16px ▾</button>
-    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Item 3</button></ar-dropdown-item>
-</ar-dropdown>
-
-        </div>
-
-        <div class="ks-variant">
-            <h3>Offset latéral</h3>
-            <p class="ks-variant-desc">Décalage latéral en pixels du panel par rapport au trigger (axe transversal), piloté par la custom property CSS `--ar-dropdown-offset` (défaut : `var(--ar-anchor-offset)`, 0).</p>
-            <ar-dropdown style="--ar-dropdown-offset: 32px">
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Offset 32px ▾</button>
-    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Item 3</button></ar-dropdown-item>
-</ar-dropdown>
-
-        </div>
-
-        <div class="ks-variant">
-            <h3>Trigger externe</h3>
-            <p class="ks-variant-desc">L'attribut `for` accepte l'ID d'un élément déclencheur situé en dehors du composant. Utile pour les boutons dans une barre d'outils ou une autre zone de la page.</p>
-            <button class="ar-btn ar-btn-secondary" id="ar-doc-ext-trigger">Trigger externe ▾</button>
-<ar-dropdown for="ar-doc-ext-trigger">
-    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
-</ar-dropdown>
-
-        </div>
-
-        <div class="ks-variant">
-            <h3>Désactivé</h3>
-            <p class="ks-variant-desc">Combine `disabled` sur `ar-dropdown` et `aria-disabled="true"` sur le trigger — voir la
-section Accessibilité pour le détail. WCAG exempte les composants désactivés des
-exigences de contraste : `opacity: .5` est donc conforme.
-</p>
-            <ar-dropdown disabled>
-    <button
-        class="ar-btn ar-btn-secondary"
-        slot="trigger"
-        aria-disabled="true"
-        aria-describedby="disabled-reason"
-        style="opacity:.5;cursor:not-allowed;"
-    >Actions ▾</button>
-    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
-</ar-dropdown>
-<p id="disabled-reason" style="margin-top:.5rem;font-size:.875rem;color:var(--ar-color-text-muted,#6b7280);">
-    Droits insuffisants pour effectuer cette action.
-</p>
-
-        </div>
-        </section>
-
         <section class="ks-component" id="ar-pagination">
-            <h2>ar-pagination</h2>
+            <h2>Pagination <code>ar-pagination</code></h2>
             <p class="ks-summary">Découpe une longue liste de contenu en pages, et permet à l'utilisateur de naviguer entre elles.</p>
             
         <div class="ks-variant">
@@ -759,7 +798,7 @@ exigences de contraste : `opacity: .5` est donc conforme.
         </section>
 
         <section class="ks-component" id="ar-progressbar">
-            <h2>ar-progressbar</h2>
+            <h2>Progressbar <code>ar-progressbar</code></h2>
             <p class="ks-summary">Affiche l'avancement d'une opération en cours sous forme de barre horizontale. À utiliser pour un upload de fichier, un parcours en plusieurs étapes, ou toute tâche à progression mesurable.</p>
             
         <div class="ks-variant">
@@ -784,7 +823,7 @@ exigences de contraste : `opacity: .5` est donc conforme.
         </section>
 
         <section class="ks-component" id="ar-spinner">
-            <h2>ar-spinner</h2>
+            <h2>Spinner <code>ar-spinner</code></h2>
             <p class="ks-summary">Indique qu'une opération est en cours quand sa durée est inconnue. À utiliser pour un état de chargement là où une barre de progression déterminée n'est pas pertinente.</p>
             
         <div class="ks-variant">
@@ -827,7 +866,7 @@ exigences de contraste : `opacity: .5` est donc conforme.
         </section>
 
         <section class="ks-component" id="ar-stepper">
-            <h2>ar-stepper</h2>
+            <h2>Stepper <code>ar-stepper</code></h2>
             <p class="ks-summary">Affiche la progression de l'utilisateur à travers une séquence d'étapes, avec prise en charge des sous-étapes. À utiliser pour des parcours de création ou de modification en plusieurs étapes.</p>
             
         <div class="ks-variant">
@@ -932,7 +971,7 @@ exigences de contraste : `opacity: .5` est donc conforme.
         </section>
 
         <section class="ks-component" id="ar-tab-group">
-            <h2>ar-tab-group</h2>
+            <h2>Tab Group <code>ar-tab-group</code></h2>
             <p class="ks-summary">Organise du contenu associé dans un même conteneur qui affiche un panneau à la fois, avec des onglets pour naviguer entre eux.</p>
             
         <div class="ks-variant">
@@ -1144,7 +1183,7 @@ exigences de contraste : `opacity: .5` est donc conforme.
         </section>
 
         <section class="ks-component" id="ar-table-sort">
-            <h2>ar-table-sort</h2>
+            <h2>Table Sort <code>ar-table-sort</code></h2>
             <p class="ks-summary">Affiche un indicateur de tri sur un entête de colonne, avec confirmation asynchrone du résultat. À utiliser pour trier une liste de données côté serveur ou après un traitement asynchrone.</p>
             
         <div class="ks-variant">
@@ -1281,7 +1320,7 @@ sans avancer dans le cycle.
         </section>
 
         <section class="ks-component" id="ar-tooltip">
-            <h2>ar-tooltip</h2>
+            <h2>Tooltip <code>ar-tooltip</code></h2>
             <p class="ks-summary">Affiche une information contextuelle brève, non interactive, quand l'utilisateur survole ou focus un élément cible.
 
 Implémente WCAG 1.4.13 (Content on Hover or Focus) : la bulle reste
