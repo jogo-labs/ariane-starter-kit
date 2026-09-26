@@ -11,17 +11,17 @@
                Contraste vérifié (OKLCH → sRGB, formule WCAG) :
                primary-40 vs blanc (fond de bouton, texte blanc dessus) = 5.52:1 (>=4.5)
                primary-70 vs vault #191d2e (texte interactif en sombre) = 8.76:1 (>=4.5) */
-    --ar-color-primary-05: oklch(16.5% 0.02 250);
-    --ar-color-primary-10: oklch(22.5% 0.025 250);
-    --ar-color-primary-20: oklch(31% 0.03 250);
-    --ar-color-primary-30: oklch(41.5% 0.035 250);
-    --ar-color-primary-40: oklch(52.43% 0.04 250);
-    --ar-color-primary-50: oklch(60.5% 0.045 250);
-    --ar-color-primary-60: oklch(70.5% 0.05 250);
-    --ar-color-primary-70: oklch(80.16% 0.045 250);
-    --ar-color-primary-80: oklch(86.5% 0.035 250);
-    --ar-color-primary-90: oklch(92.5% 0.025 250);
-    --ar-color-primary-95: oklch(96.5% 0.015 250);
+    --ar-color-primary-05: oklch(14% 0.05 275);
+    --ar-color-primary-10: oklch(19% 0.07 275);
+    --ar-color-primary-20: oklch(25% 0.09 275);
+    --ar-color-primary-30: oklch(31% 0.11 275);
+    --ar-color-primary-40: oklch(37% 0.13 275);
+    --ar-color-primary-50: oklch(43% 0.15 275);
+    --ar-color-primary-60: oklch(70% 0.09 275);
+    --ar-color-primary-70: oklch(50% 0.16 275);
+    --ar-color-primary-80: oklch(82% 0.045 275);
+    --ar-color-primary-90: oklch(88% 0.03 275);
+    --ar-color-primary-95: oklch(95% 0.014 275);
 
     /* Vault (surfaces sombres dédiées — identité "Voûte", #110) — utilisé
                uniquement par --ar-color-bg/-bg-subtle côté sombre, jamais par un

@@ -67,7 +67,7 @@
         &:not(:disabled):not([aria-disabled='true']):active {
             background: var(--ar-button-primary-bg-active);
             border-color: var(--ar-button-primary-bg-active);
-            color: light-dark(var(--ar-color-text), var(--ar-color-text-inverse));
+            color: var(--ar-color-white);
         }
     }
 
@@ -78,13 +78,11 @@
 
         &:not(:disabled):not([aria-disabled='true']):hover {
             border-color: var(--ar-button-secondary-border-hover);
-            background-color: var(--ar-button-secondary-bg-hover);
         }
 
         &:not(:disabled):not([aria-disabled='true']):active,
         &:not(:disabled):not([aria-disabled='true'])[aria-expanded='true'] {
             border-color: var(--ar-button-secondary-border-hover);
-            background-color: var(--ar-button-secondary-bg-hover);
         }
     }
 
