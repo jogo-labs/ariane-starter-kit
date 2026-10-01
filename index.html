@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kitchen Sink — Ariane Starter Kit</title>
-    <script type="module" src="https://unpkg.com/@ariane-ui/core/cdn/autoloader.prod.js"></script>
+    <script type="module" src="https://unpkg.com/@ariane-ui/core/cdn/autoloader.js"></script>
     <link rel="stylesheet" href="./ariane-starter.css" />
     <link rel="stylesheet" href="./presets/buttons.css" />
     <link rel="stylesheet" href="./presets/fields.css" />
@@ -278,7 +278,7 @@
             </a>
             <span>|</span>
             <span class="ks-nav-title">Kitchen Sink</span>
-            <span class="ks-nav-version desktop-only">v0.1.0-alpha.12</span>
+            <span class="ks-nav-version desktop-only">v0.1.0-alpha.13</span>
         </div>
         <div class="ks-nav-right">
             <a class="github-link" href="https://github.com/jogo-labs/ariane-starter-kit" target="_blank" rel="noopener" aria-label="Visiter le projet Ariane Starter Kit">
@@ -298,8 +298,8 @@
                 <li><a href="#ar-breadcrumb">Breadcrumb</a></li>
                 <li><a href="#ar-charcounter">Char Counter</a></li>
                 <li><a href="#ar-collapse">Collapse</a></li>
-                <li><a href="#ar-datepicker">Datepicker</a></li>
                 <li><a href="#ar-dialog">Dialog</a></li>
+                <li><a href="#ar-datepicker">Datepicker</a></li>
                 <li><a href="#ar-dropdown">Dropdown</a></li>
                 <li><a href="#ar-pagination">Pagination</a></li>
                 <li><a href="#ar-progressbar">Progressbar</a></li>
@@ -322,8 +322,8 @@
                 <li><a href="#ar-breadcrumb">Breadcrumb</a></li>
                 <li><a href="#ar-charcounter">Char Counter</a></li>
                 <li><a href="#ar-collapse">Collapse</a></li>
-                <li><a href="#ar-datepicker">Datepicker</a></li>
                 <li><a href="#ar-dialog">Dialog</a></li>
+                <li><a href="#ar-datepicker">Datepicker</a></li>
                 <li><a href="#ar-dropdown">Dropdown</a></li>
                 <li><a href="#ar-pagination">Pagination</a></li>
                 <li><a href="#ar-progressbar">Progressbar</a></li>
@@ -582,72 +582,6 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
         </section>
         
 
-        <section class="ks-component" id="ar-datepicker">
-            <h2>Datepicker <code>&lt;ar-datepicker&gt;</code></h2>
-            
-            
-        <div class="ks-variant">
-            <h3>Par défaut</h3>
-            <p class="ks-variant-desc">Date unique avec format français. Le hint par défaut (non surchargé ici) affiche automatiquement un exemple de date formatée.
-</p>
-            <div class="ks-preview"><ar-datepicker
-  label="Date de naissance"
-  format="dd/MM/yyyy"
-  lang="fr-FR"
-></ar-datepicker>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Avec erreur</h3>
-            <p class="ks-variant-desc">État d'erreur visible via le slot error.</p>
-            <div class="ks-preview"><ar-datepicker label="Date de naissance">
-  <span slot="error">Date invalide ou hors plage autorisée</span>
-</ar-datepicker>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Readonly</h3>
-            <p class="ks-variant-desc">Valeur affichée non modifiable, soumise au formulaire.</p>
-            <div class="ks-preview"><ar-datepicker value="2026-06-12" readonly label="Date"></ar-datepicker>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Disabled</h3>
-            <p class="ks-variant-desc">Composant désactivé, valeur exclue du formulaire.</p>
-            <div class="ks-preview"><ar-datepicker value="2026-06-12" disabled label="Date"></ar-datepicker>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Plage de dates</h3>
-            <p class="ks-variant-desc">`min` et `max` restreignent les jours sélectionnables (grisés, `aria-disabled`). Le hint par défaut annonce la plage aux technologies d'assistance sans configuration supplémentaire.
-</p>
-            <div class="ks-preview"><ar-datepicker
-  label="Date de rendez-vous"
-  min="2026-01-01"
-  max="2026-12-31"
-  lang="fr-FR"
-></ar-datepicker>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Langue et format</h3>
-            <p class="ks-variant-desc">L'attribut `lang` pilote la totalité des textes et formats — y compris les textes par défaut des slots — à l'exception du label de l'input.
-</p>
-            <div class="ks-preview"><ar-datepicker
-  label="Date of birth"
-  format="MM/dd/yyyy"
-  lang="en-US"
-></ar-datepicker>
-</div>
-        </div>
-        </section>
-        
-
         <section class="ks-component" id="ar-dialog">
             <h2>Dialog <code>&lt;ar-dialog&gt;</code></h2>
             
@@ -812,6 +746,72 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
         dialog.addEventListener('ar-dialog-dismissed', function (e) { e.preventDefault(); });
     })();
 </script>
+</div>
+        </div>
+        </section>
+        
+
+        <section class="ks-component" id="ar-datepicker">
+            <h2>Datepicker <code>&lt;ar-datepicker&gt;</code></h2>
+            
+            
+        <div class="ks-variant">
+            <h3>Par défaut</h3>
+            <p class="ks-variant-desc">Date unique avec format français. Le hint par défaut (non surchargé ici) affiche automatiquement un exemple de date formatée.
+</p>
+            <div class="ks-preview"><ar-datepicker
+  label="Date de naissance"
+  format="dd/MM/yyyy"
+  lang="fr-FR"
+></ar-datepicker>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Avec erreur</h3>
+            <p class="ks-variant-desc">État d'erreur visible via le slot error.</p>
+            <div class="ks-preview"><ar-datepicker label="Date de naissance">
+  <span slot="error">Date invalide ou hors plage autorisée</span>
+</ar-datepicker>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Readonly</h3>
+            <p class="ks-variant-desc">Valeur affichée non modifiable, soumise au formulaire.</p>
+            <div class="ks-preview"><ar-datepicker value="2026-06-12" readonly label="Date"></ar-datepicker>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Disabled</h3>
+            <p class="ks-variant-desc">Composant désactivé, valeur exclue du formulaire.</p>
+            <div class="ks-preview"><ar-datepicker value="2026-06-12" disabled label="Date"></ar-datepicker>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Plage de dates</h3>
+            <p class="ks-variant-desc">`min` et `max` restreignent les jours sélectionnables (grisés, `aria-disabled`). Le hint par défaut annonce la plage aux technologies d'assistance sans configuration supplémentaire.
+</p>
+            <div class="ks-preview"><ar-datepicker
+  label="Date de rendez-vous"
+  min="2026-01-01"
+  max="2026-12-31"
+  lang="fr-FR"
+></ar-datepicker>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Langue et format</h3>
+            <p class="ks-variant-desc">L'attribut `lang` pilote la totalité des textes et formats — y compris les textes par défaut des slots — à l'exception du label de l'input.
+</p>
+            <div class="ks-preview"><ar-datepicker
+  label="Date of birth"
+  format="MM/dd/yyyy"
+  lang="en-US"
+></ar-datepicker>
 </div>
         </div>
         </section>
