@@ -11,7 +11,10 @@ Point de départ pour styliser [Ariane](https://github.com/jogo-labs/ariane) : u
 Copiez `ariane-starter.css` et le dossier `ariane-starter/` dans votre projet et adaptez les fragments à votre identité visuelle :
 
 ```html
-<script type="module" src="https://unpkg.com/@ariane-ui/core/cdn/autoloader.js"></script>
+<script
+  type="module"
+  src="https://unpkg.com/@ariane-ui/core/cdn/autoloader.js"
+></script>
 <link rel="stylesheet" href="./ariane-starter.css" />
 ```
 
@@ -30,3 +33,5 @@ node scripts/theme-to-js.js <entrée.css> <sortie.js> --name <identifiant>
 ## Régénérer
 
 `index.html`, `ariane-starter.css` et `ariane-starter/` sont générés depuis le monorepo [`ariane`](https://github.com/jogo-labs/ariane) — ne pas les éditer à la main ici. Voir `docs/superpowers/specs/2026-09-23-starter-kit-demo-230-design.md` dans ce repo-là pour le flux complet.
+
+`package.json` et `scripts/theme-to-js.js` sont aussi écrasés à chaque régénération : ne pas les modifier ici, éditer les sources dans le monorepo (`scripts/starter-kit/`).
