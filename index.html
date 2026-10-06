@@ -299,11 +299,11 @@
                 <li><a href="#ar-charcounter">Char Counter</a></li>
                 <li><a href="#ar-collapse">Collapse</a></li>
                 <li><a href="#ar-datepicker">Datepicker</a></li>
-                <li><a href="#ar-dialog">Dialog</a></li>
                 <li><a href="#ar-dropdown">Dropdown</a></li>
-                <li><a href="#ar-pagination">Pagination</a></li>
                 <li><a href="#ar-progressbar">Progressbar</a></li>
+                <li><a href="#ar-pagination">Pagination</a></li>
                 <li><a href="#ar-spinner">Spinner</a></li>
+                <li><a href="#ar-dialog">Dialog</a></li>
                 <li><a href="#ar-stepper">Stepper</a></li>
                 <li><a href="#ar-tab-group">Tab Group</a></li>
                 <li><a href="#ar-table-sort">Table Sort</a></li>
@@ -323,11 +323,11 @@
                 <li><a href="#ar-charcounter">Char Counter</a></li>
                 <li><a href="#ar-collapse">Collapse</a></li>
                 <li><a href="#ar-datepicker">Datepicker</a></li>
-                <li><a href="#ar-dialog">Dialog</a></li>
                 <li><a href="#ar-dropdown">Dropdown</a></li>
-                <li><a href="#ar-pagination">Pagination</a></li>
                 <li><a href="#ar-progressbar">Progressbar</a></li>
+                <li><a href="#ar-pagination">Pagination</a></li>
                 <li><a href="#ar-spinner">Spinner</a></li>
+                <li><a href="#ar-dialog">Dialog</a></li>
                 <li><a href="#ar-stepper">Stepper</a></li>
                 <li><a href="#ar-tab-group">Tab Group</a></li>
                 <li><a href="#ar-table-sort">Table Sort</a></li>
@@ -648,6 +648,236 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
         </section>
         
 
+        <section class="ks-component" id="ar-dropdown">
+            <h2>Dropdown <code>&lt;ar-dropdown&gt;</code></h2>
+            
+            
+        <div class="ks-variant">
+            <h3>Mode menu</h3>
+            <p class="ks-variant-desc">Avec des ar-dropdown-item, le panel reçoit automatiquement role="menu" et la navigation clavier est activée (↑↓ Home End Escape Tab).</p>
+            <div class="ks-preview"><ar-dropdown>
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Actions ▾</button>
+    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
+</ar-dropdown>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Séparateur</h3>
+            <p class="ks-variant-desc">Un `&lt;hr&gt;` placé entre des `ar-dropdown-item` reçoit automatiquement `role="separator"`. Stylez-le avec votre propre CSS — ici via une variable CSS du token de bordure.
+</p>
+            <div class="ks-preview"><ar-dropdown>
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Actions ▾</button>
+    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
+    <hr style="border:none;border-top:1px solid var(--ar-color-border,#e5e7eb);margin:.25rem 0;">
+    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
+</ar-dropdown>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Contenu libre</h3>
+            <p class="ks-variant-desc">Sans ar-dropdown-item, le panel est un conteneur libre — aucun role ni navigation clavier n'est ajouté.</p>
+            <div class="ks-preview"><ar-dropdown>
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Options ▾</button>
+    <p style="padding: .5rem .75rem; margin: 0; color: var(--ar-color-text, inherit);">Contenu libre — formulaire, liste, texte…</p>
+</ar-dropdown>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Placement top-end</h3>
+            <p class="ks-variant-desc">Le panel s'ouvre au-dessus du trigger, aligné à droite.</p>
+            <div class="ks-preview"><ar-dropdown placement="top-end">
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Placement ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
+</ar-dropdown>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Distance personnalisée</h3>
+            <p class="ks-variant-desc">Espacement en pixels entre le trigger et le panel (axe principal), piloté par la custom property CSS `--ar-dropdown-distance` (défaut : `var(--ar-anchor-distance)`, 4px).</p>
+            <div class="ks-preview"><ar-dropdown style="--ar-dropdown-distance: 16px">
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Distance 16px ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 3</button></ar-dropdown-item>
+</ar-dropdown>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Offset latéral</h3>
+            <p class="ks-variant-desc">Décalage latéral en pixels du panel par rapport au trigger (axe transversal), piloté par la custom property CSS `--ar-dropdown-offset` (défaut : `var(--ar-anchor-offset)`, 0).</p>
+            <div class="ks-preview"><ar-dropdown style="--ar-dropdown-offset: 32px">
+    <button class="ar-btn ar-btn-secondary" slot="trigger">Offset 32px ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Item 3</button></ar-dropdown-item>
+</ar-dropdown>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Trigger externe</h3>
+            <p class="ks-variant-desc">L'attribut `for` accepte l'ID d'un élément déclencheur situé en dehors du composant. Utile pour les boutons dans une barre d'outils ou une autre zone de la page.</p>
+            <div class="ks-preview"><button class="ar-btn ar-btn-secondary" id="ar-doc-ext-trigger">Trigger externe ▾</button>
+<ar-dropdown for="ar-doc-ext-trigger">
+    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
+    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
+</ar-dropdown>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Désactivé</h3>
+            <p class="ks-variant-desc">Combine `disabled` sur `ar-dropdown` et `aria-disabled="true"` sur le trigger — voir la
+section Accessibilité pour le détail. WCAG exempte les composants désactivés des
+exigences de contraste : `opacity: .5` est donc conforme.
+</p>
+            <div class="ks-preview"><ar-dropdown disabled>
+    <button
+        class="ar-btn ar-btn-secondary"
+        slot="trigger"
+        aria-disabled="true"
+        aria-describedby="disabled-reason"
+        style="opacity:.5;cursor:not-allowed;"
+    >Actions ▾</button>
+    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
+</ar-dropdown>
+<p id="disabled-reason" style="margin-top:.5rem;font-size:.875rem;color:var(--ar-color-text-muted,#6b7280);">
+    Droits insuffisants pour effectuer cette action.
+</p>
+</div>
+        </div>
+        </section>
+        
+
+        <section class="ks-component" id="ar-progressbar">
+            <h2>Progressbar <code>&lt;ar-progressbar&gt;</code></h2>
+            
+            
+        <div class="ks-variant">
+            <h3>Par défaut</h3>
+            <p class="ks-variant-desc">Barre de progression sans attribut — affiche l'état 0 % sans label.</p>
+            <div class="ks-preview"><ar-progressbar></ar-progressbar>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Upload</h3>
+            <p class="ks-variant-desc">Suivi de l'upload d'un fichier.</p>
+            <div class="ks-preview"><ar-progressbar percent="10">
+  <!-- Contenu au choix -->
+  Import du fichier :&nbsp;<br role="none" />
+  <strong title="mon-document-a-partager.pdf">
+      mon-document-a-partager.pdf
+  </strong>
+</ar-progressbar>
+</div>
+        </div>
+        </section>
+        
+
+        <section class="ks-component" id="ar-pagination">
+            <h2>Pagination <code>&lt;ar-pagination&gt;</code></h2>
+            <ar-alert variant="info" without-notification style="margin-bottom: 1.5rem">
+            <p style="margin: 0">Pour les besoins de la démo un script simule une réponse positive aux événements émis par le composant.</p>
+        </ar-alert>
+            
+        <div class="ks-variant">
+            <h3>Par défaut</h3>
+            <p class="ks-variant-desc">Pagination sans attributs (valeurs par défaut du composant).</p>
+            <div class="ks-preview"><ar-pagination></ar-pagination>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>20 pages</h3>
+            <p class="ks-variant-desc">Pagination à 20 pages, page 10 active (milieu de la liste).</p>
+            <div class="ks-preview"><ar-pagination current="10" total="20"></ar-pagination>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>20 pages (current en début)</h3>
+            <p class="ks-variant-desc">Pagination à 20 pages, page 5 active (début de la liste).</p>
+            <div class="ks-preview"><ar-pagination current="5" total="20"></ar-pagination>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>20 pages (current en fin)</h3>
+            <p class="ks-variant-desc">Pagination à 20 pages, page 18 active (fin de la liste).</p>
+            <div class="ks-preview"><ar-pagination current="18" total="20"></ar-pagination>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Mode compact</h3>
+            <p class="ks-variant-desc">Mode compact — uniquement précédent/suivant et un label de position, identique en mobile et desktop.</p>
+            <div class="ks-preview"><ar-pagination compact current="4" total="12"></ar-pagination>
+</div>
+        </div>
+        </section>
+        <script>
+    document.addEventListener('ar-pagination-page-change', (e) => {
+        /* Mettez à jour le contenu de la page, puis la page active du composant */
+        e.target.current = e.detail.to;
+    });
+</script>
+
+
+        <section class="ks-component" id="ar-spinner">
+            <h2>Spinner <code>&lt;ar-spinner&gt;</code></h2>
+            
+            
+        <div class="ks-variant">
+            <h3>Par défaut (moyen)</h3>
+            <p class="ks-variant-desc">Spinner sans attribut size (taille md par défaut).</p>
+            <div class="ks-preview"><ar-spinner></ar-spinner>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Très petit</h3>
+            <p class="ks-variant-desc">Spinner avec size="xs".</p>
+            <div class="ks-preview"><ar-spinner size="xs"></ar-spinner>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Petit</h3>
+            <p class="ks-variant-desc">Spinner avec size="sm".</p>
+            <div class="ks-preview"><ar-spinner size="sm"></ar-spinner>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Grand</h3>
+            <p class="ks-variant-desc">Spinner avec size="lg".</p>
+            <div class="ks-preview"><ar-spinner size="lg"></ar-spinner>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Toutes les tailles</h3>
+            <p class="ks-variant-desc">Les 4 tailles disponibles affichées côte à côte (xs, sm, md, lg).</p>
+            <div class="ks-preview"><ar-spinner size="xs"></ar-spinner>
+<ar-spinner size="sm"></ar-spinner>
+<ar-spinner></ar-spinner>
+<ar-spinner size="lg"></ar-spinner>
+</div>
+        </div>
+        </section>
+        
+
         <section class="ks-component" id="ar-dialog">
             <h2>Dialog <code>&lt;ar-dialog&gt;</code></h2>
             
@@ -812,236 +1042,6 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
         dialog.addEventListener('ar-dialog-dismissed', function (e) { e.preventDefault(); });
     })();
 </script>
-</div>
-        </div>
-        </section>
-        
-
-        <section class="ks-component" id="ar-dropdown">
-            <h2>Dropdown <code>&lt;ar-dropdown&gt;</code></h2>
-            
-            
-        <div class="ks-variant">
-            <h3>Mode menu</h3>
-            <p class="ks-variant-desc">Avec des ar-dropdown-item, le panel reçoit automatiquement role="menu" et la navigation clavier est activée (↑↓ Home End Escape Tab).</p>
-            <div class="ks-preview"><ar-dropdown>
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Actions ▾</button>
-    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
-</ar-dropdown>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Séparateur</h3>
-            <p class="ks-variant-desc">Un `&lt;hr&gt;` placé entre des `ar-dropdown-item` reçoit automatiquement `role="separator"`. Stylez-le avec votre propre CSS — ici via une variable CSS du token de bordure.
-</p>
-            <div class="ks-preview"><ar-dropdown>
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Actions ▾</button>
-    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
-    <hr style="border:none;border-top:1px solid var(--ar-color-border,#e5e7eb);margin:.25rem 0;">
-    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
-</ar-dropdown>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Contenu libre</h3>
-            <p class="ks-variant-desc">Sans ar-dropdown-item, le panel est un conteneur libre — aucun role ni navigation clavier n'est ajouté.</p>
-            <div class="ks-preview"><ar-dropdown>
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Options ▾</button>
-    <p style="padding: .5rem .75rem; margin: 0; color: var(--ar-color-text, inherit);">Contenu libre — formulaire, liste, texte…</p>
-</ar-dropdown>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Placement top-end</h3>
-            <p class="ks-variant-desc">Le panel s'ouvre au-dessus du trigger, aligné à droite.</p>
-            <div class="ks-preview"><ar-dropdown placement="top-end">
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Placement ▾</button>
-    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
-</ar-dropdown>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Distance personnalisée</h3>
-            <p class="ks-variant-desc">Espacement en pixels entre le trigger et le panel (axe principal), piloté par la custom property CSS `--ar-dropdown-distance` (défaut : `var(--ar-anchor-distance)`, 4px).</p>
-            <div class="ks-preview"><ar-dropdown style="--ar-dropdown-distance: 16px">
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Distance 16px ▾</button>
-    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Item 3</button></ar-dropdown-item>
-</ar-dropdown>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Offset latéral</h3>
-            <p class="ks-variant-desc">Décalage latéral en pixels du panel par rapport au trigger (axe transversal), piloté par la custom property CSS `--ar-dropdown-offset` (défaut : `var(--ar-anchor-offset)`, 0).</p>
-            <div class="ks-preview"><ar-dropdown style="--ar-dropdown-offset: 32px">
-    <button class="ar-btn ar-btn-secondary" slot="trigger">Offset 32px ▾</button>
-    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Item 2</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Item 3</button></ar-dropdown-item>
-</ar-dropdown>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Trigger externe</h3>
-            <p class="ks-variant-desc">L'attribut `for` accepte l'ID d'un élément déclencheur situé en dehors du composant. Utile pour les boutons dans une barre d'outils ou une autre zone de la page.</p>
-            <div class="ks-preview"><button class="ar-btn ar-btn-secondary" id="ar-doc-ext-trigger">Trigger externe ▾</button>
-<ar-dropdown for="ar-doc-ext-trigger">
-    <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
-    <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
-</ar-dropdown>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Désactivé</h3>
-            <p class="ks-variant-desc">Combine `disabled` sur `ar-dropdown` et `aria-disabled="true"` sur le trigger — voir la
-section Accessibilité pour le détail. WCAG exempte les composants désactivés des
-exigences de contraste : `opacity: .5` est donc conforme.
-</p>
-            <div class="ks-preview"><ar-dropdown disabled>
-    <button
-        class="ar-btn ar-btn-secondary"
-        slot="trigger"
-        aria-disabled="true"
-        aria-describedby="disabled-reason"
-        style="opacity:.5;cursor:not-allowed;"
-    >Actions ▾</button>
-    <ar-dropdown-item><button>Item 1</button></ar-dropdown-item>
-</ar-dropdown>
-<p id="disabled-reason" style="margin-top:.5rem;font-size:.875rem;color:var(--ar-color-text-muted,#6b7280);">
-    Droits insuffisants pour effectuer cette action.
-</p>
-</div>
-        </div>
-        </section>
-        
-
-        <section class="ks-component" id="ar-pagination">
-            <h2>Pagination <code>&lt;ar-pagination&gt;</code></h2>
-            <ar-alert variant="info" without-notification style="margin-bottom: 1.5rem">
-            <p style="margin: 0">Pour les besoins de la démo un script simule une réponse positive aux événements émis par le composant.</p>
-        </ar-alert>
-            
-        <div class="ks-variant">
-            <h3>Par défaut</h3>
-            <p class="ks-variant-desc">Pagination sans attributs (valeurs par défaut du composant).</p>
-            <div class="ks-preview"><ar-pagination></ar-pagination>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>20 pages</h3>
-            <p class="ks-variant-desc">Pagination à 20 pages, page 10 active (milieu de la liste).</p>
-            <div class="ks-preview"><ar-pagination current="10" total="20"></ar-pagination>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>20 pages (current en début)</h3>
-            <p class="ks-variant-desc">Pagination à 20 pages, page 5 active (début de la liste).</p>
-            <div class="ks-preview"><ar-pagination current="5" total="20"></ar-pagination>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>20 pages (current en fin)</h3>
-            <p class="ks-variant-desc">Pagination à 20 pages, page 18 active (fin de la liste).</p>
-            <div class="ks-preview"><ar-pagination current="18" total="20"></ar-pagination>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Mode compact</h3>
-            <p class="ks-variant-desc">Mode compact — uniquement précédent/suivant et un label de position, identique en mobile et desktop.</p>
-            <div class="ks-preview"><ar-pagination compact current="4" total="12"></ar-pagination>
-</div>
-        </div>
-        </section>
-        <script>
-    document.addEventListener('ar-pagination-page-change', (e) => {
-        /* Mettez à jour le contenu de la page, puis la page active du composant */
-        e.target.current = e.detail.to;
-    });
-</script>
-
-
-        <section class="ks-component" id="ar-progressbar">
-            <h2>Progressbar <code>&lt;ar-progressbar&gt;</code></h2>
-            
-            
-        <div class="ks-variant">
-            <h3>Par défaut</h3>
-            <p class="ks-variant-desc">Barre de progression sans attribut — affiche l'état 0 % sans label.</p>
-            <div class="ks-preview"><ar-progressbar></ar-progressbar>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Upload</h3>
-            <p class="ks-variant-desc">Suivi de l'upload d'un fichier.</p>
-            <div class="ks-preview"><ar-progressbar percent="10">
-  <!-- Contenu au choix -->
-  Import du fichier :&nbsp;<br role="none" />
-  <strong title="mon-document-a-partager.pdf">
-      mon-document-a-partager.pdf
-  </strong>
-</ar-progressbar>
-</div>
-        </div>
-        </section>
-        
-
-        <section class="ks-component" id="ar-spinner">
-            <h2>Spinner <code>&lt;ar-spinner&gt;</code></h2>
-            
-            
-        <div class="ks-variant">
-            <h3>Par défaut (moyen)</h3>
-            <p class="ks-variant-desc">Spinner sans attribut size (taille md par défaut).</p>
-            <div class="ks-preview"><ar-spinner></ar-spinner>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Très petit</h3>
-            <p class="ks-variant-desc">Spinner avec size="xs".</p>
-            <div class="ks-preview"><ar-spinner size="xs"></ar-spinner>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Petit</h3>
-            <p class="ks-variant-desc">Spinner avec size="sm".</p>
-            <div class="ks-preview"><ar-spinner size="sm"></ar-spinner>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Grand</h3>
-            <p class="ks-variant-desc">Spinner avec size="lg".</p>
-            <div class="ks-preview"><ar-spinner size="lg"></ar-spinner>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Toutes les tailles</h3>
-            <p class="ks-variant-desc">Les 4 tailles disponibles affichées côte à côte (xs, sm, md, lg).</p>
-            <div class="ks-preview"><ar-spinner size="xs"></ar-spinner>
-<ar-spinner size="sm"></ar-spinner>
-<ar-spinner></ar-spinner>
-<ar-spinner size="lg"></ar-spinner>
 </div>
         </div>
         </section>
