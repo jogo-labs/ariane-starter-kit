@@ -278,7 +278,7 @@
             </a>
             <span>|</span>
             <span class="ks-nav-title">Kitchen Sink</span>
-            <span class="ks-nav-version desktop-only">v0.1.0-alpha.13</span>
+            <span class="ks-nav-version desktop-only">v0.1.0-alpha.14</span>
         </div>
         <div class="ks-nav-right">
             <a class="github-link" href="https://github.com/jogo-labs/ariane-starter-kit" target="_blank" rel="noopener" aria-label="Visiter le projet Ariane Starter Kit">
@@ -301,9 +301,9 @@
                 <li><a href="#ar-datepicker">Datepicker</a></li>
                 <li><a href="#ar-dialog">Dialog</a></li>
                 <li><a href="#ar-dropdown">Dropdown</a></li>
+                <li><a href="#ar-pagination">Pagination</a></li>
                 <li><a href="#ar-progressbar">Progressbar</a></li>
                 <li><a href="#ar-spinner">Spinner</a></li>
-                <li><a href="#ar-pagination">Pagination</a></li>
                 <li><a href="#ar-stepper">Stepper</a></li>
                 <li><a href="#ar-tab-group">Tab Group</a></li>
                 <li><a href="#ar-table-sort">Table Sort</a></li>
@@ -325,9 +325,9 @@
                 <li><a href="#ar-datepicker">Datepicker</a></li>
                 <li><a href="#ar-dialog">Dialog</a></li>
                 <li><a href="#ar-dropdown">Dropdown</a></li>
+                <li><a href="#ar-pagination">Pagination</a></li>
                 <li><a href="#ar-progressbar">Progressbar</a></li>
                 <li><a href="#ar-spinner">Spinner</a></li>
-                <li><a href="#ar-pagination">Pagination</a></li>
                 <li><a href="#ar-stepper">Stepper</a></li>
                 <li><a href="#ar-tab-group">Tab Group</a></li>
                 <li><a href="#ar-table-sort">Table Sort</a></li>
@@ -928,6 +928,55 @@ exigences de contraste : `opacity: .5` est donc conforme.
         </section>
         
 
+        <section class="ks-component" id="ar-pagination">
+            <h2>Pagination <code>&lt;ar-pagination&gt;</code></h2>
+            <ar-alert variant="info" without-notification style="margin-bottom: 1.5rem">
+            <p style="margin: 0">Pour les besoins de la démo un script simule une réponse positive aux événements émis par le composant.</p>
+        </ar-alert>
+            
+        <div class="ks-variant">
+            <h3>Par défaut</h3>
+            <p class="ks-variant-desc">Pagination sans attributs (valeurs par défaut du composant).</p>
+            <div class="ks-preview"><ar-pagination></ar-pagination>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>20 pages</h3>
+            <p class="ks-variant-desc">Pagination à 20 pages, page 10 active (milieu de la liste).</p>
+            <div class="ks-preview"><ar-pagination current="10" total="20"></ar-pagination>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>20 pages (current en début)</h3>
+            <p class="ks-variant-desc">Pagination à 20 pages, page 5 active (début de la liste).</p>
+            <div class="ks-preview"><ar-pagination current="5" total="20"></ar-pagination>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>20 pages (current en fin)</h3>
+            <p class="ks-variant-desc">Pagination à 20 pages, page 18 active (fin de la liste).</p>
+            <div class="ks-preview"><ar-pagination current="18" total="20"></ar-pagination>
+</div>
+        </div>
+
+        <div class="ks-variant">
+            <h3>Mode compact</h3>
+            <p class="ks-variant-desc">Mode compact — uniquement précédent/suivant et un label de position, identique en mobile et desktop.</p>
+            <div class="ks-preview"><ar-pagination compact current="4" total="12"></ar-pagination>
+</div>
+        </div>
+        </section>
+        <script>
+    document.addEventListener('ar-pagination-page-change', (e) => {
+        /* Mettez à jour le contenu de la page, puis la page active du composant */
+        e.target.current = e.detail.to;
+    });
+</script>
+
+
         <section class="ks-component" id="ar-progressbar">
             <h2>Progressbar <code>&lt;ar-progressbar&gt;</code></h2>
             
@@ -997,55 +1046,6 @@ exigences de contraste : `opacity: .5` est donc conforme.
         </div>
         </section>
         
-
-        <section class="ks-component" id="ar-pagination">
-            <h2>Pagination <code>&lt;ar-pagination&gt;</code></h2>
-            <ar-alert variant="info" without-notification style="margin-bottom: 1.5rem">
-            <p style="margin: 0">Pour les besoins de la démo un script simule une réponse positive aux événements émis par le composant.</p>
-        </ar-alert>
-            
-        <div class="ks-variant">
-            <h3>Par défaut</h3>
-            <p class="ks-variant-desc">Pagination sans attributs (valeurs par défaut du composant).</p>
-            <div class="ks-preview"><ar-pagination></ar-pagination>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>20 pages</h3>
-            <p class="ks-variant-desc">Pagination à 20 pages, page 10 active (milieu de la liste).</p>
-            <div class="ks-preview"><ar-pagination current="10" total="20"></ar-pagination>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>20 pages (current en début)</h3>
-            <p class="ks-variant-desc">Pagination à 20 pages, page 5 active (début de la liste).</p>
-            <div class="ks-preview"><ar-pagination current="5" total="20"></ar-pagination>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>20 pages (current en fin)</h3>
-            <p class="ks-variant-desc">Pagination à 20 pages, page 18 active (fin de la liste).</p>
-            <div class="ks-preview"><ar-pagination current="18" total="20"></ar-pagination>
-</div>
-        </div>
-
-        <div class="ks-variant">
-            <h3>Mode compact</h3>
-            <p class="ks-variant-desc">Mode compact — uniquement précédent/suivant et un label de position, identique en mobile et desktop.</p>
-            <div class="ks-preview"><ar-pagination compact current="4" total="12"></ar-pagination>
-</div>
-        </div>
-        </section>
-        <script>
-    document.addEventListener('ar-pagination-page-change', (e) => {
-        /* Mettez à jour le contenu de la page, puis la page active du composant */
-        e.target.current = e.detail.to;
-    });
-</script>
-
 
         <section class="ks-component" id="ar-stepper">
             <h2>Stepper <code>&lt;ar-stepper&gt;</code></h2>
