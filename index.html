@@ -278,7 +278,7 @@
             </a>
             <span>|</span>
             <span class="ks-nav-title">Kitchen Sink</span>
-            <span class="ks-nav-version desktop-only">v0.1.0-alpha.14</span>
+            <span class="ks-nav-version desktop-only">v0.1.0-alpha.15</span>
         </div>
         <div class="ks-nav-right">
             <a class="github-link" href="https://github.com/jogo-labs/ariane-starter-kit" target="_blank" rel="noopener" aria-label="Visiter le projet Ariane Starter Kit">
@@ -535,13 +535,13 @@ ouvrir un item ferme automatiquement les autres.
         </div>
 
         <div class="ks-variant">
-            <h3>Trigger externe (for)</h3>
-            <p class="ks-variant-desc">L'attribut `for` accepte l'ID d'un bouton natif situé n'importe où dans la page.
+            <h3>Trigger externe (trigger-id)</h3>
+            <p class="ks-variant-desc">L'attribut `trigger-id` accepte l'ID d'un bouton natif situé n'importe où dans la page.
 `aria-expanded` et `aria-controls` sont posés automatiquement sur ce bouton.
 </p>
             <div class="ks-preview"><div>
     <button id="ar-doc-collapse-ext" class="ar-btn ar-btn-secondary">Révéler le contenu</button>
-    <ar-collapse for="ar-doc-collapse-ext" style="--ar-collapse-duration:200ms">
+    <ar-collapse trigger-id="ar-doc-collapse-ext" style="--ar-collapse-duration:200ms">
         <div style="padding-top:0.75rem">
             <p style="margin:0">Contenu piloté par un trigger externe. Utile quand trigger et panel ne peuvent pas être enveloppés dans un wrapper commun.</p>
         </div>
@@ -894,9 +894,9 @@ Utile pour les patterns "Lire la suite" où le bouton apparaît sous le texte tr
 
         <div class="ks-variant">
             <h3>Trigger externe</h3>
-            <p class="ks-variant-desc">L'attribut `for` accepte l'ID d'un élément déclencheur situé en dehors du composant. Utile pour les boutons dans une barre d'outils ou une autre zone de la page.</p>
+            <p class="ks-variant-desc">L'attribut `trigger-id` accepte l'ID d'un élément déclencheur situé en dehors du composant. Utile pour les boutons dans une barre d'outils ou une autre zone de la page.</p>
             <div class="ks-preview"><button class="ar-btn ar-btn-secondary" id="ar-doc-ext-trigger">Trigger externe ▾</button>
-<ar-dropdown for="ar-doc-ext-trigger">
+<ar-dropdown trigger-id="ar-doc-ext-trigger">
     <ar-dropdown-item><button>Modifier</button></ar-dropdown-item>
     <ar-dropdown-item><button>Dupliquer</button></ar-dropdown-item>
     <ar-dropdown-item><button>Supprimer</button></ar-dropdown-item>
@@ -1114,7 +1114,7 @@ exigences de contraste : `opacity: .5` est donc conforme.
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"></path>
                     </svg>
                 </span>
-                <ar-tooltip for="etape-1-2-info">Texte d'aide contextuelle</ar-tooltip>
+                <ar-tooltip trigger-id="etape-1-2-info">Texte d'aide contextuelle</ar-tooltip>
             </span>
         </ar-stepper-item>
         <ar-stepper-item path="etape-1-3" label="Mes identifiants" href="#"></ar-stepper-item>
@@ -1489,6 +1489,8 @@ Appeler `confirm()` pour valider le tri ou `reject()` pour annuler.
             <h3>Tri en échec</h3>
             <p class="ks-variant-desc">Si le tri échoue, appeler `reject()` — le composant revient à son état précédent
 sans avancer dans le cycle.
+`reject('Texte')` annonce ce texte tel quel aux lecteurs d'écran, sans le traduire : à
+localiser par l'application. Sans argument, l'annonce par défaut est utilisée.
 </p>
             <div class="ks-preview"><table style="border-collapse:collapse;font-family:inherit;">
     <thead>
@@ -1518,9 +1520,9 @@ sans avancer dans le cycle.
             
         <div class="ks-variant">
             <h3>Par défaut</h3>
-            <p class="ks-variant-desc">Passez l'ID du trigger via `for`. La bulle s'affiche après `show-delay` ms (300 par défaut) et se masque après `hide-delay` ms (150 par défaut).</p>
+            <p class="ks-variant-desc">Passez l'ID du trigger via `trigger-id`. La bulle s'affiche après `show-delay` ms (300 par défaut) et se masque après `hide-delay` ms (150 par défaut).</p>
             <div class="ks-preview"><button id="tt-default" class="ar-btn ar-btn-secondary">Survolez-moi</button>
-<ar-tooltip for="tt-default">Texte d'aide contextuelle</ar-tooltip>
+<ar-tooltip trigger-id="tt-default">Texte d'aide contextuelle</ar-tooltip>
 </div>
         </div>
 
@@ -1529,16 +1531,16 @@ sans avancer dans le cycle.
             <p class="ks-variant-desc">Toutes les valeurs Floating UI sont supportées — `top`, `bottom`, `left`, `right` et leurs variantes `-start`/`-end`. Le composant bascule automatiquement si l'espace est insuffisant.</p>
             <div class="ks-preview"><div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;padding:2rem 0;">
     <button id="tt-top" class="ar-btn ar-btn-secondary">top</button>
-    <ar-tooltip for="tt-top" placement="top">Placement top</ar-tooltip>
+    <ar-tooltip trigger-id="tt-top" placement="top">Placement top</ar-tooltip>
 
     <button id="tt-bottom" class="ar-btn ar-btn-secondary">bottom</button>
-    <ar-tooltip for="tt-bottom" placement="bottom">Placement bottom</ar-tooltip>
+    <ar-tooltip trigger-id="tt-bottom" placement="bottom">Placement bottom</ar-tooltip>
 
     <button id="tt-left" class="ar-btn ar-btn-secondary">left</button>
-    <ar-tooltip for="tt-left" placement="left">Placement left</ar-tooltip>
+    <ar-tooltip trigger-id="tt-left" placement="left">Placement left</ar-tooltip>
 
     <button id="tt-right" class="ar-btn ar-btn-secondary">right</button>
-    <ar-tooltip for="tt-right" placement="right">Placement right</ar-tooltip>
+    <ar-tooltip trigger-id="tt-right" placement="right">Placement right</ar-tooltip>
 </div>
 </div>
         </div>
@@ -1547,7 +1549,7 @@ sans avancer dans le cycle.
             <h3>Sans caret</h3>
             <p class="ks-variant-desc">Ajoutez `without-arrow` pour supprimer le caret directionnel — utile quand le tooltip est suffisamment proche du trigger ou dans un contexte visuel dense.</p>
             <div class="ks-preview"><button id="tt-no-arrow" class="ar-btn ar-btn-secondary">Sans caret</button>
-<ar-tooltip for="tt-no-arrow" without-arrow>Tooltip sans caret</ar-tooltip>
+<ar-tooltip trigger-id="tt-no-arrow" without-arrow>Tooltip sans caret</ar-tooltip>
 </div>
         </div>
 
@@ -1559,7 +1561,7 @@ sans avancer dans le cycle.
     <abbr id="tt-wcag" tabindex="0" style="cursor:help;text-decoration:underline dotted;">WCAG 1.4.13</abbr>
     pour garantir la persistance au survol.
 </p>
-<ar-tooltip for="tt-wcag">Web Content Accessibility Guidelines — critère 1.4.13 : Content on Hover or Focus</ar-tooltip>
+<ar-tooltip trigger-id="tt-wcag">Web Content Accessibility Guidelines — critère 1.4.13 : Content on Hover or Focus</ar-tooltip>
 </div>
         </div>
 
@@ -1567,7 +1569,7 @@ sans avancer dans le cycle.
             <h3>Bouton icône</h3>
             <p class="ks-variant-desc">Complète un bouton sans libellé textuel — le tooltip joue le rôle de description visible. Attention, il ne remplace pas un `aria-label` sur le bouton lui-même.</p>
             <div class="ks-preview"><button id="tt-icon" class="ar-btn ar-btn-secondary" aria-label="Paramètres" style="width:2.5rem;height:2.5rem;padding:0;font-size:1.1rem;">⚙</button>
-<ar-tooltip for="tt-icon">Paramètres du compte</ar-tooltip>
+<ar-tooltip trigger-id="tt-icon">Paramètres du compte</ar-tooltip>
 </div>
         </div>
 
@@ -1578,7 +1580,7 @@ Valeurs par défaut : 300 ms / 150 ms (conformes WCAG 1.4.13).
 Ici `show-delay="0"` pour une réponse immédiate.
 </p>
             <div class="ks-preview"><button id="tt-fast" class="ar-btn ar-btn-secondary">Réponse immédiate</button>
-<ar-tooltip for="tt-fast" show-delay="0" hide-delay="0">Apparaît sans délai</ar-tooltip>
+<ar-tooltip trigger-id="tt-fast" show-delay="0" hide-delay="0">Apparaît sans délai</ar-tooltip>
 </div>
         </div>
 
@@ -1586,7 +1588,7 @@ Ici `show-delay="0"` pour une réponse immédiate.
             <h3>Désactivé</h3>
             <p class="ks-variant-desc">L'attribut `disabled` bloque tout déclenchement sans modifier le DOM du trigger. Utile pour désactiver dynamiquement le tooltip selon le contexte.</p>
             <div class="ks-preview"><button id="tt-disabled" class="ar-btn ar-btn-secondary">Hover (tooltip désactivé)</button>
-<ar-tooltip for="tt-disabled" disabled>Ce texte ne s'affichera pas</ar-tooltip>
+<ar-tooltip trigger-id="tt-disabled" disabled>Ce texte ne s'affichera pas</ar-tooltip>
 </div>
         </div>
         </section>
